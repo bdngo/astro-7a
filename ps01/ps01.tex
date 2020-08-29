@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{cancel}
+\usepackage[output-complex-root=j]{siunitx}
+\usepackage[american, nooldvoltagedirection]{circuitikz}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
+
+\newtheorem{genthm}{Theorem}
+\DeclareSIUnit\year{yr}
+
+\newcommand{\unit}[1]{\bm{\hat{#1}}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\tpose}[1]{\left[#1\right]^{\! \top} \!\!}
+\newcommand{\diff}[1]{\frac{d}{d #1}}
+
+\lstset{
+    language=Python,
+    tabsize=4,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    frame=single
+}
+
+\title{Astro 7A PS01}
+\author{Bryan Ngo}
+\date{2020-08-28}
+
+\begin{document}
+
+\maketitle
+
+\section{Julian Dates}
+
+\subsection{}
+
+The first step is converting 11:10 PDT into UTC.
+Since PDT is UTC-07:00, lecture started 18:10 UTC.
+Converting into Julian time given the reference date 2459087,
+\begin{equation}
+    2459087 + \underbrace{2}_{\text{whole days}} + \underbrace{\frac{1}{4}}_{\text{six hours}} + \underbrace{\frac{10}{1440}}_{\text{minutes per day}} = 2459089.2569\bar{4}
+\end{equation}
+
+\subsection{}
+
+
+
+\section{Synodic \& Sidereal Periods}
+
+\subsection{}
+
+The \emph{synodic period} of a planet is the time it takes to return to the same location in its orbit relative to the planet's sun.
+The \emph{sidereal period}, on the other hand, is the time it takes to return to the same location in its orbit relative to the background stars.
+
+\subsection{}
+
+Synodic periods are relevant because they can be useful in determining the time between oppositions and conjunctions of planets.
+
+\subsection{}
+
+\begin{equation}
+    \frac{1}{S} =
+    \begin{cases}
+        \frac{1}{P} - \frac{1}{P_\oplus} & \text{inferior} \\
+        \frac{1}{P_\oplus} - \frac{1}{P} & \text{superior}
+    \end{cases}
+\end{equation}
+Finding the case for an superior orbit, let \(P\) is the sidereal period of a planet.
+Then the angular velocity is \(\frac{360}{P} \, \si{\deg\per\year}\).
+We can then define the sidereal period of Earth to be \(P_\oplus = \SI{1}{\year}\), and thus can define the orbital rate to be \(\frac{360}{P_\oplus}\, \si{\deg\per\year}\).
+Since the planet is in a superior orbit, Earth will have sweeped out a remainder angle \(\theta\) by the time it "catches up" with the planet.
+The orbital rate is then
+\begin{align}
+    \frac{360}{P_\oplus} &= \frac{360 + \theta}{S} \\
+    &= \frac{360}{S} + \frac{\theta}{S}
+\end{align}
+We can determine what \(\frac{\theta}{S}\) is by observing that this rate is the same rate at which our superior planet orbits, that being \(\frac{360}{P}\).
+Thus,
+\begin{align}
+    \frac{\cancel{360}}{P_\oplus} &= \frac{\cancel{360}}{S} + \frac{\cancel{360}}{P}
+    \Rightarrow \frac{1}{S} = \frac{1}{P_\oplus} + \frac{1}{P}
+\end{align}
+For the inferior orbit case, we can change our perspective to that of the superior planet, so we only need to switch the position of \(P\) and \(P_\oplus\).
+
+\subsection{}
+
+\begin{align}
+    P_e &= \SI{6.1}{\day} \\
+    P_c &= \SI{2.4}{\day} \\
+    P_f &= \SI{9.2}{\day} \\
+\end{align}
+Relative to \(e\), \(c\) is inferior given that \(P_c < P_e\), and \(f\) is superior given that \(P_f > P_e\).
+The synodic periods are thus
+\begin{align}
+    S_c &= \frac{1}{\frac{1}{P_c} - \frac{1}{P_e}} \approx \SI{4.0}{\day} \\
+    S_f &= \frac{1}{\frac{1}{P_e} - \frac{1}{P_f}} \approx \SI{18.1}{\day}
+\end{align}
+
+\section{Syene \& Alexandria}
+
+\end{document}
