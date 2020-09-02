@@ -5,6 +5,7 @@
 \usepackage[american, nooldvoltagedirection]{circuitikz}
 \usepackage{bm}
 \usepackage{listings}
+\usepackage{pgfplots, pgfplotstable}
 \usepackage{graphicx}
 \usepackage{fullpage}
 \usepackage{hyperref}
@@ -24,9 +25,10 @@
 \lstset{
     language=Python,
     tabsize=4,
-    basicstyle=\footnotesize\ttfamily,
+    basicstyle=\small\ttfamily,
     numbers=left,
     numberstyle=\ttfamily,
+    stringstyle=\color{olive},
     keywordstyle=\color{blue},
     frame=single
 }
@@ -44,7 +46,7 @@
 \subsection{}
 
 The first step is converting 11:10 PDT into UTC.
-Since PDT is UTC-07:00, lecture started 18:10 UTC.
+Since PDT is UTC-07:00, lecture started at 18:10 UTC.
 Converting into Julian time given the reference date 2459087,
 \begin{equation}
     2459087 + \underbrace{2}_{\text{whole days}} + \underbrace{\frac{1}{4}}_{\text{six hours}} + \underbrace{\frac{10}{1440}}_{\text{minutes per day}} = 2459089.2569\bar{4}
@@ -63,7 +65,7 @@ The \emph{sidereal period}, on the other hand, is the time it takes to return to
 
 \subsection{}
 
-Synodic periods would be useful in determining nearest/farthest approaches in order to observe planets.
+Synodic periods would be useful in determining nearest/farthest approaches in order to observe planets or plan launches.
 
 \subsection{}
 
@@ -134,7 +136,7 @@ Using the equation
 \begin{equation}
     F = \frac{L}{4 \pi R^2}
 \end{equation}
-where \(L\) is the luminosity and \(F\) is the flux.
+where \(L\) is the luminosity and \(F\) is the flux density.
 Since our solar panel is receiving \SI{1.4}{\kilo\watt} over a total area of \SI{1}{\meter\squared}, \(F = \frac{\SI{1.4}{\kilo\watt}}{\SI{1}{\meter\squared}} = \SI{1.4}{\kilo\watt\per\meter\squared}\).
 Rearranging the equation and letting \(R = \SI{1}{\astronomicalunit} = \SI{149597870700}{\meter}\),
 \begin{equation}
@@ -147,8 +149,6 @@ We specified an exact amount because June 21, the summer solstice, is when the E
 Had the experiment been performed at any other location or time, the solar luminosity would be measured \emph{lower}.
 
 \section{Kepler's Laws}
-
-\lstinputlisting{ps01.py}
 
 \subsection{}
 
@@ -165,19 +165,58 @@ Had the experiment been performed at any other location or time, the solar lumin
     g & 12.364 & 0.0467 \\
     h & 18.768 & 0.0617 \\
     \hline
-\end{tabular}
-\end{center}
-
-\begin{center}
-    \includegraphics[width=0.75\textwidth]{prob5-a.png}
+\end{tabular} \\
+% \includegraphics[width=0.75\textwidth]{prob5-a.png}
+\begin{tikzpicture}
+    \begin{axis}[
+        title=Log-log Plot of Orbital Period vs. Semimajor Axis,
+        xmode=log,
+        ymode=log,
+        xlabel = {\(\log(P) [\si{\day}]\)},
+        ylabel = {\(\log(a) [\si{\astronomicalunit}]\)},
+        log basis x = {10},
+        log basis y = {10}
+    ]
+    \addplot table[
+        only marks,
+        x=p, y=a,
+        col sep=comma,
+    ] {data.csv};
+    \addplot table[
+        red,
+        y={create col/linear regression={y=a}},
+        col sep=comma,
+        mark=none
+    ] {data.csv};
+    \end{axis}
+\end{tikzpicture}
 \end{center}
 
 \subsection{}
 
+\lstinputlisting{ps01.py}
 Using the \lstinline|numpy.polyfit| function, we find that
 \begin{align}
-    m &= 0.6662913872826872 \\
-    b &= -2.058112526126338
+    m &= \num{0.6662913872826872} \\
+    b &= \num{-2.058112526126338}
+\end{align}
+
+\subsection{}
+
+\(m\) represents the (logarithmic) ratio between the semimajor axis and orbital period of a planet.
+It could be used to verify Kepler's third law.
+
+\subsection{}
+
+The \(y\)-intercept can be used to determine the mass of the central star because it represents a \(\log(P) = 0 \Rightarrow P = 1\), since the star cannot orbit itself.
+Finding \(a\),
+\begin{equation}
+    a = 10^b = \num{0.008747570954405929}
+\end{equation}
+Plugging in and letting \(m_1 + m_2\),
+\begin{align}
+    P^2 &= \frac{4 \pi^2}{G (2 m_1)}a^3 \\
+    \Rightarrow m_1 &= \frac{2 \pi^2}{GP^2}a^3 = 
 \end{align}
 
 \end{document}

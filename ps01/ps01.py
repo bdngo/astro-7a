@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from math import log10
 
@@ -20,19 +19,9 @@ axes = [
     0.0467,
     0.0617
 ]
-letters = "bcdefgh"
 
-m, b = np.polyfit(list(map(log10, periods)), list(map(log10, axes)), 1)
+log_P = list(map(log10, periods))
+log_a = list(map(log10, axes))
+m, b = np.polyfit(log_P, log_a, 1)
 print(m, b)
-
-plt.subplots_adjust(left=0.2)
-plt.xscale('log', basex=10)
-plt.yscale('log', basey=10)
-plt.xlabel('log(P) [d]')
-plt.ylabel('log(a) [au]')
-plt.title('Log-log plot of Period vs. Semimajor Axis')
-for i in range(len(letters)):
-    plt.annotate(letters[i], (periods[i], axes[i]))
-
-plt.plot(periods, axes, 'ro', periods, axes)
-plt.show()
+print(10**b)
