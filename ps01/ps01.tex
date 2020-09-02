@@ -24,7 +24,7 @@
 \lstset{
     language=Python,
     tabsize=4,
-    basicstyle=\ttfamily,
+    basicstyle=\footnotesize\ttfamily,
     numbers=left,
     numberstyle=\ttfamily,
     keywordstyle=\color{blue},
@@ -130,14 +130,54 @@ The distance from the Earth to the Sun is assumed in this calculation to be larg
 
 \subsection{}
 
-Since the Sun is modeled as a radiating sphere, the irradiance, or power recieved per unit area should remain constant,
+Using the equation
 \begin{equation}
-    I_\odot = \SI{1.4}{\kilo\watt\per\meter\squared}
+    F = \frac{L}{4 \pi R^2}
 \end{equation}
-The total luminosity can be measured with the equation
+where \(L\) is the luminosity and \(F\) is the flux.
+Since our solar panel is receiving \SI{1.4}{\kilo\watt} over a total area of \SI{1}{\meter\squared}, \(F = \frac{\SI{1.4}{\kilo\watt}}{\SI{1}{\meter\squared}} = \SI{1.4}{\kilo\watt\per\meter\squared}\).
+Rearranging the equation and letting \(R = \SI{1}{\astronomicalunit} = \SI{149597870700}{\meter}\),
 \begin{equation}
-    I_\odot = \frac{L_\odot}{4\pi R_{\odot\oplus}^2}
+    L = 4 \pi R^2 F = 4 \pi (\SI{149597870700}{\meter})^2 (\SI{1.4}{\kilo\watt\per\meter\squared}) \approx \SI{3.94d26}{\watt}
 \end{equation}
-where \(R_{\odot\oplus}\) is the mean distance from the Earth to the Sun.
+
+\subsection{}
+
+We specified an exact amount because June 21, the summer solstice, is when the Earth's tilts most towards the sun, and noon to ensure the Sun is highest in the sky.
+Had the experiment been performed at any other location or time, the solar luminosity would be measured \emph{lower}.
+
+\section{Kepler's Laws}
+
+\lstinputlisting{ps01.py}
+
+\subsection{}
+
+\begin{center}
+\begin{tabular}{||c|c|c||}
+    \hline
+    \textbf{Planet} & \(P\) [\si{\day}] & \(a\) [\si{\astronomicalunit}] \\
+    \hline
+    b & 1.511 & 0.0115 \\
+    c & 2.422 & 0.0158 \\
+    d & 4.049 & 0.0222 \\
+    e & 6.099 & 0.0292 \\
+    f & 9.206 & 0.0384 \\
+    g & 12.364 & 0.0467 \\
+    h & 18.768 & 0.0617 \\
+    \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.75\textwidth]{prob5-a.png}
+\end{center}
+
+\subsection{}
+
+Using the \lstinline|numpy.polyfit| function, we find that
+\begin{align}
+    m &= 0.6662913872826872 \\
+    b &= -2.058112526126338
+\end{align}
 
 \end{document}
