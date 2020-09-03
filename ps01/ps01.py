@@ -22,6 +22,7 @@ axes = [
 
 log_P = list(map(log10, periods))
 log_a = list(map(log10, axes))
+print(log_P)
+print(log_a)
 m, b = np.polyfit(log_P, log_a, 1)
 print(m, b)
-print(10**b)

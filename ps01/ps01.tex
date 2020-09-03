@@ -169,13 +169,9 @@ Had the experiment been performed at any other location or time, the solar lumin
 % \includegraphics[width=0.75\textwidth]{prob5-a.png}
 \begin{tikzpicture}
     \begin{axis}[
-        title=Log-log Plot of Orbital Period vs. Semimajor Axis,
-        xmode=log,
-        ymode=log,
+        title=Logarithm of Orbital Period vs. Logarithm of Semimajor Axis,
         xlabel = {\(\log(P) [\si{\day}]\)},
         ylabel = {\(\log(a) [\si{\astronomicalunit}]\)},
-        log basis x = {10},
-        log basis y = {10}
     ]
     \addplot table[
         only marks,
@@ -208,15 +204,19 @@ It could be used to verify Kepler's third law.
 
 \subsection{}
 
-The \(y\)-intercept can be used to determine the mass of the central star because it represents a \(\log(P) = 0 \Rightarrow P = 1\), since the star cannot orbit itself.
+The \(y\)-intercept can be used to determine the mass of the central star because it represents a \(\log(P) = 0 \Rightarrow P = \SI{1}{\day} = \SI{86400}{\second}\), since the star cannot orbit itself.
 Finding \(a\),
 \begin{equation}
-    a = 10^b = \num{0.008747570954405929}
+    a = 10^b = \SI{0.008747570954405929}{\astronomicalunit} \cdot \SI{149597870700}{\meter\per\astronomicalunit} = \SI{1.31d9}{\meter}
 \end{equation}
 Plugging in and letting \(m_1 + m_2\),
 \begin{align}
     P^2 &= \frac{4 \pi^2}{G (2 m_1)}a^3 \\
-    \Rightarrow m_1 &= \frac{2 \pi^2}{GP^2}a^3 = 
+    \Rightarrow m_1 &= \frac{2 \pi^2}{G P^2}a^3 = \SI{8.88d27}{\kilogram}
 \end{align}
+
+\subsection{}
+
+In Kepler's original formulation, the constants of proportionality do not exist because (1) he assumed a unit of time of \emph{days} and a unit of distance of \emph{astronomical units}, as well as the fact that \(m_1 \gg m_2\).
 
 \end{document}
