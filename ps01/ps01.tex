@@ -169,32 +169,34 @@ Had the experiment been performed at any other location or time, the solar lumin
 % \includegraphics[width=0.75\textwidth]{prob5-a.png}
 \begin{tikzpicture}
     \begin{axis}[
-        title=Logarithm of Orbital Period vs. Logarithm of Semimajor Axis,
-        xlabel = {\(\log(P) [\si{\day}]\)},
-        ylabel = {\(\log(a) [\si{\astronomicalunit}]\)},
+        title=Logarithm of Semimajor Axis vs. Logarithm of Orbital Period,
+        xlabel = {\(\log(a) [\si{\astronomicalunit}]\)},
+        ylabel = {\(\log(P) [\si{\day}]\)},
     ]
     \addplot table[
         only marks,
-        x=p, y=a,
+        x=a, y=p,
         col sep=comma,
     ] {data.csv};
     \addplot table[
         red,
-        y={create col/linear regression={y=a}},
+        y={create col/linear regression={y=p}},
         col sep=comma,
         mark=none
     ] {data.csv};
     \end{axis}
 \end{tikzpicture}
-\end{center}
+\end{center} 
+
+\newpage
 
 \subsection{}
 
 \lstinputlisting{ps01.py}
 Using the \lstinline|numpy.polyfit| function, we find that
 \begin{align}
-    m &= \num{0.6662913872826872} \\
-    b &= \num{-2.058112526126338}
+    m &= \num{1.5008402757428148} \\
+    b &= \num{3.088900474715311}
 \end{align}
 
 \subsection{}
@@ -204,15 +206,15 @@ It could be used to verify Kepler's third law.
 
 \subsection{}
 
-The \(y\)-intercept can be used to determine the mass of the central star because it represents a \(\log(P) = 0 \Rightarrow P = \SI{1}{\day} = \SI{86400}{\second}\), since the star cannot orbit itself.
-Finding \(a\),
+The \(y\)-intercept can be used to determine the mass of the central star because it represents a \(\log(a) = 0 \Rightarrow a = \SI{1}{\astronomicalunit} = \SI{149597870700}{\meter}\), since the star cannot orbit itself.
+Finding \(P\),
 \begin{equation}
-    a = 10^b = \SI{0.008747570954405929}{\astronomicalunit} \cdot \SI{149597870700}{\meter\per\astronomicalunit} = \SI{1.31d9}{\meter}
+    P = 10^b = \SI{1227.157976738856}{\day} \cdot \SI{86400}{\second\per\day} = \SI{1.06d8}{\second}
 \end{equation}
-Plugging in and letting \(m_1 + m_2\),
+Plugging in and letting \(m_2 = 0\),
 \begin{align}
-    P^2 &= \frac{4 \pi^2}{G (2 m_1)}a^3 \\
-    \Rightarrow m_1 &= \frac{2 \pi^2}{G P^2}a^3 = \SI{8.88d27}{\kilogram}
+    P^2 &= \frac{4 \pi^2}{G m_1}a^3 \\
+    \Rightarrow m_1 &= \frac{4 \pi^2}{G P^2}a^3 = \SI{1.76d29}{\kilogram}
 \end{align}
 
 \subsection{}
