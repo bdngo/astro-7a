@@ -25,7 +25,7 @@
 \lstset{
     language=Python,
     tabsize=4,
-    basicstyle=\small\ttfamily,
+    basicstyle=\footnotesize\ttfamily,
     numbers=left,
     numberstyle=\ttfamily,
     stringstyle=\color{olive},
@@ -62,6 +62,7 @@ The Modified Julian Date is \(2459089.2569\bar{4} - 2400000.5 = 59088.7569\bar{4
 
 The \emph{synodic period} of a planet is the time it takes to return to the same location in its orbit relative to the planet's sun.
 The \emph{sidereal period}, on the other hand, is the time it takes to return to the same location in its orbit relative to the background stars.
+In general, a synodic period is longer than the sidereal period.
 
 \subsection{}
 
@@ -98,7 +99,7 @@ For the inferior orbit case, we can change our perspective to that of the superi
 \begin{align}
     P_e &= \SI{6.1}{\day} \\
     P_c &= \SI{2.4}{\day} \\
-    P_f &= \SI{9.2}{\day} \\
+    P_f &= \SI{9.2}{\day}
 \end{align}
 Relative to \(e\), \(c\) is inferior given that \(P_c < P_e\), and \(f\) is superior given that \(P_f > P_e\).
 The synodic periods are thus
@@ -145,8 +146,9 @@ Rearranging the equation and letting \(R = \SI{1}{\astronomicalunit} = \SI{14959
 
 \subsection{}
 
-We specified an exact amount because June 21, the summer solstice, is when the Earth's tilts most towards the sun, and noon to ensure the Sun is highest in the sky.
-Had the experiment been performed at any other location or time, the solar luminosity would be measured \emph{lower}.
+We specified an exact amount because June 21, the summer solstice, is when the Earth's tilt is most towards the sun, and noon to ensure the Sun is highest in the sky.
+This date ensures the Sun's rays strike the panel at the most perpendicular angle possible.
+Had the experiment been performed at any other location or time, the solar luminosity would be measured \emph{lower} because the Sun's rays would strike at a shallower angle, reducing the vertical component striking the panel.
 
 \section{Kepler's Laws}
 
@@ -206,11 +208,12 @@ It could be used to verify Kepler's third law.
 
 \subsection{}
 
-The \(y\)-intercept can be used to determine the mass of the central star because it represents a \(\log(a) = 0 \Rightarrow a = \SI{1}{\astronomicalunit} = \SI{149597870700}{\meter}\), since the star cannot orbit itself.
+The \(y\)-intercept can be used to determine the mass of the central star because it represents a \(\log(a) = 0 \Rightarrow a = \SI{1}{\astronomicalunit} = \SI{149597870700}{\meter}\).
 Finding \(P\),
 \begin{equation}
     P = 10^b = \SI{1227.157976738856}{\day} \cdot \SI{86400}{\second\per\day} = \SI{1.06d8}{\second}
 \end{equation}
+This represents the hypothetical period of a planet if it were orbiting TRAPPIST-1 at a semimajor axis of \SI{1}{\astronomicalunit}.
 Plugging in and letting \(m_2 = 0\),
 \begin{align}
     P^2 &= \frac{4 \pi^2}{G m_1}a^3 \\
@@ -219,6 +222,6 @@ Plugging in and letting \(m_2 = 0\),
 
 \subsection{}
 
-In Kepler's original formulation, the constants of proportionality do not exist because (1) he assumed a unit of time of \emph{days} and a unit of distance of \emph{astronomical units}, as well as the fact that \(m_1 \gg m_2\).
+In Kepler's original formulation, the constants of proportionality do not exist because (1) he used \emph{days} and \emph{astronomical units} to measure time and distance, respectively, and (2) the fact that \(m_1 \gg m_2\).
 
 \end{document}
