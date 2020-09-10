@@ -14,6 +14,7 @@
 \renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
 
 \newtheorem{theorem}{Theorem}
+\DeclareSIUnit\year{yr}
 
 \newcommand{\unit}[1]{\bm{\hat{#1}}}
 \newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
@@ -86,7 +87,7 @@ The new altitudes are
 
 The generalized formula of Kepler's third law with units of astronomical units and days is
 \begin{equation}
-    \left(\frac{P}{365}\right)^2 = a^3 \implies a = \left(\frac{P}{365}\right)^{\frac{3}{2}}
+    \left(\frac{P}{365}\right)^2 = a^3 \implies a = \left(\frac{P}{365}\right)^{\frac{2}{3}}
 \end{equation}
 From there, we can use the equation to determine the periastron and apastron to be, respectively,
 \begin{align}
@@ -98,31 +99,31 @@ From there, we can use the equation to determine the periastron and apastron to 
         \hline
         Planet & Semimajor Axis [\si{\astronomicalunit}] & Periastron Distance [\si{\astronomicalunit}] & Apastron Distance [\si{\astronomicalunit}] \\
         \hline
-        b & \num{4.74e-3} & \num{4.53e-3} & \num{4.95e-3} \\
-        c & \num{6.74e-3} & \num{6.56e-3} & \num{6.91e-3} \\
-        d & \num{1.55e-2} & \num{1.54e-2} & \num{1.56e-2} \\
-        e & \num{2.60e-2} & \num{2.28e-2} & \num{2.91e-2} \\
-        f & \num{4.58e-2} & \num{4.52e-2} & \num{4.63e-2} \\
-        g & \num{0.18} & \num{0.16} & \num{0.21} \\
+        b & \num{9.27e-2} & \num{8.85e-2} & \num{9.69e-2} \\
+        c & \num{1.10e-1} & \num{1.06e-1} & \num{1.11e-1} \\
+        d & \num{1.57e-1} & \num{1.56e-1} & \num{1.58e-1} \\
+        e & \num{1.97e-1} & \num{1.95e-1} & \num{2.00e-1} \\
+        f & \num{2.54e-1} & \num{2.51e-1} & \num{2.57e-1} \\
+        g & \num{4.72e-1} & \num{4.01e-1} & \num{5.43e-1} \\
         \hline
     \end{tabular}
 \end{center}
 
 \subsection{}
 
-The two closest planets are planets b and c, with a closest approach distance of only \SI{1.61e-3}{\astronomicalunit}.
+The two closest planets are planets b and c, with a closest approach distance of only \SI{9.1e-3}{\astronomicalunit}.
 
 \subsection{}
 
 Converting to SI units, our givens are
 \begin{align}
     M_b &= 1.9 \cdot \SI{5.9722e+24}{\kilogram} = \SI{1.13e+25}{\kilogram} \\
-    M_c &= 2.9 \cdot \SI{5.9722e+25}{\kilogram} = \SI{1.73e+25}{\kilogram} \\
-    r_{bc} &= \frac{\SI{1.61e-3}{\cancel\astronomicalunit}}{1} \cdot \frac{\SI{149597870700}{\meter}}{\SI{1}{\cancel\astronomicalunit}} = \SI{2.41e+8}{\meter}
+    M_c &= 2.9 \cdot \SI{5.9722e+24}{\kilogram} = \SI{1.73e+25}{\kilogram} \\
+    r_{bc} &= \frac{\SI{9.1e-3}{\cancel\astronomicalunit}}{1} \cdot \frac{\SI{149597870700}{\meter}}{\SI{1}{\cancel\astronomicalunit}} = \SI{1.36e+9}{\meter}
 \end{align}
 Then, using Newton's law of universal gravitation,
 \begin{equation}
-    F_{bc} = \frac{G M_b M_c}{r_{bc}^2} = \frac{G (\SI{1.13e+25}{\kilogram}) (\SI{1.73e+25}{\kilogram})}{(\SI{2.41e+8}{\meter})^2} = \SI{2.26e+23}{\newton}
+    F_{bc} = \frac{G M_b M_c}{r_{bc}^2} = \frac{G (\SI{1.13e+25}{\kilogram}) (\SI{1.73e+25}{\kilogram})}{(\SI{1.36e+9}{\meter})^2} = \SI{7.08e+21}{\newton}
 \end{equation}
 
 \subsection{}
@@ -130,15 +131,15 @@ Then, using Newton's law of universal gravitation,
 Our givens are
 \begin{align}
     M_\star &= 0.961 \cdot \SI{1.98847e+30}{\kilogram} = \SI{1.91e+30}{\kilogram}\\
-    r_{b\star} &= \frac{\SI{4.53e-3}{\cancel\astronomicalunit}}{1} \cdot \frac{\SI{149597870700}{\meter}}{\SI{1}{\cancel\astronomicalunit}} = \SI{6.78e+8}{\meter}
+    r_{b\star} &= \frac{\SI{9.69e-2}{\cancel\astronomicalunit}}{1} \cdot \frac{\SI{149597870700}{\meter}}{\SI{1}{\cancel\astronomicalunit}} = \SI{1.45e+10}{\meter}
 \end{align}
 The force between planet b and its sun is
 \begin{equation}
-    F_{b\star} = \frac{G M_B M_\star}{r_{b\star}^2} = \frac{G (\SI{1.13e+25}{\kilogram}) (\SI{1.91e+30}{\kilogram})}{(\SI{6.78e+8}{\meter})^2} = \SI{3.15e+27}{\newton}
+    F_{b\star} = \frac{G M_B M_\star}{r_{b\star}^2} = \frac{G (\SI{1.13e+25}{\kilogram}) (\SI{1.91e+30}{\kilogram})}{(\SI{1.45e+10}{\meter})^2} = \SI{6.89e+24}{\newton}
 \end{equation}
 Meaning that the ratio between the closest approach and the solar attraction is
 \begin{equation}
-    \frac{F_{bc}}{F_{b\star}} = \num{7.18e-5}
+    \frac{F_{bc}}{F_{b\star}} = \num{1.03e-3}
 \end{equation}
 
 \subsection{}
@@ -148,16 +149,66 @@ Equating \autoref{eq:periastron} and \autoref{eq:apastron},
 \begin{align}
     a_b (1 + e_b) &= a_c (1 - e_c) \\
     \Rightarrow e_b &= \frac{a_c}{a_b} (1 - e_c) - 1 \\
-    &= 0.385
+    &= 0.139
 \end{align}
-So the eccentricity increases by \SI{755}{\percent}.
+So the eccentricity increases by \SI{208}{\percent}.
 
 \subsection{}
 
 \begin{center}
-    \includegraphics[width=0.8\textwidth]{q5f.png}
+    \includegraphics[width=0.8\textwidth]{q2f.png}
 \end{center}
 
 \section{Eccentric Comets}
+
+\subsection{}
+
+Using Kepler's third law,
+\begin{equation}
+    P^2 = a^3 \implies a = (\SI{6.45}{\year})^{\frac{2}{3}} = \SI{3.47}{\astronomicalunit}
+\end{equation}
+
+\subsection{}
+
+Using \autoref{eq:periastron} and \autoref{eq:apastron},
+\begin{align}
+    r_p &= a (1 - e) = \SI{1.25}{\astronomicalunit} \\
+    r_p &= a (1 + e) = \SI{5.68}{\astronomicalunit} \\
+\end{align}
+
+\subsection{}
+
+\begin{equation}
+    E_{tot} = \frac{1}{2} \mu v^2 - \frac{G M \mu}{r}
+\end{equation}
+where \(\mu = \frac{M_\odot m_{comet}}{M_\odot + m_{comet}}\) and \(M = M_\odot + m_{comet}\).
+Equating the two expressions,
+\begin{align}
+    E_{tot} = \frac{1}{2} \frac{\cancel{M_\odot m_{comet}}}{M_\odot + m_{comet}} v^2 - \frac{G \cancel{M_\odot m_{comet}}}{r} &= -\frac{G \cancel{M_\odot m_{comet}}}{2a} \\
+    \Rightarrow \frac{1}{2} \frac{v^2}{M_\odot + m_{comet}} &= G \left(\frac{1}{r} - \frac{1}{2a}\right) \\
+    \Rightarrow v &= \sqrt{G (M_\odot + m_{comet}) \left(\frac{2}{r} - \frac{1}{a}\right)}
+\end{align}
+
+\subsection{}
+
+At periapse,
+\begin{equation}
+    v = \sqrt{G (M_\odot + m_{comet}) \left(\frac{2}{r_p} - \frac{1}{a}\right)} = \SI{3.42e+1}{\kilo\meter\per\second}
+\end{equation}
+At apoapse,
+\begin{equation}
+    v = \SI{7.49}{\kilo\meter\per\second}
+\end{equation}
+At semiminor axis, \(b = \sqrt{a^2 (1 - e^2)}\), so \(b = \SI{2.66}{\astronomicalunit}\).
+So, \(v\) is
+\begin{equation}
+    v = \SI{2.03e+1}{\kilo\meter\per\second}
+\end{equation}
+
+\section{Weighing Sagittarius A*}
+
+\subsection{}
+
+
 
 \end{document}

@@ -4,12 +4,12 @@ from matplotlib.patches import Ellipse
 from math import sqrt
 
 smajor_axes = [
-    4.74e-3,
-    6.74e-3,
-    1.55e-2,
-    2.60e-2,
-    4.58e-2,
-    0.18
+    9.27e-2,
+    1.10e-1,
+    1.57e-1,
+    1.97e-1,
+    2.54e-1,
+    4.72e-1
 ]
 
 eccentricities = [
@@ -36,10 +36,8 @@ plt.title("Orbits of Kepler-11")
 ax = plt.subplot()
 for i, j, k in zip(smajor_axes, sminor_axes, colors):
     ax.add_artist(Ellipse((0, 0), 2*i, 2*j, color=k,fill=False))
-plt.xlim((-0.2, 0.2))
-plt.ylim((-0.2, 0.2))
+plt.xlim((-0.5, 0.5))
+plt.ylim((-0.5, 0.5))
 plt.xlabel("Semimajor axis [au]")
 plt.ylabel("Semiminor axis [au]")
 plt.show()
-
-print(sminor_axes)
