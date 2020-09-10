@@ -15,6 +15,7 @@
 
 \newtheorem{theorem}{Theorem}
 \DeclareSIUnit\year{yr}
+\DeclareSIUnit\parsec{pc}
 
 \newcommand{\unit}[1]{\bm{\hat{#1}}}
 \newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
@@ -209,6 +210,27 @@ So, \(v\) is
 
 \subsection{}
 
+Sagittarius A* does not lie at the focus of the ellipse for two reasons.
+First, Kepler's first law is flawed in saying that the star is the focus of the ellipse.
+In fact, it is the center of mass of the two orbiting bodies that is located at a focus.
+However, it is a very close approximation to the star when said star's mass is much larger than the planet's mass.
+Second, this is an \(n\)-body system, so that means that not only is the star and planet interacting with each other, but also with the other planets in the system.
+This means that overall the force is not totally directed perpendicular to the direction of orbit.
 
+\subsection{}
+
+Since Sagittarius A* is a supermassive black hole, we can make the assumption that \(m_1 \gg m_2\), where \(m_1\) is the mass of Sagittarius A* and \(m_2\) is the mass of S0-37.
+Furthmore, since Sagittarius A* is close to the center of the orbit, we can assume that the eccentricity \(e = 0\), and thus \(r = a\).
+In order to find \(r\), we use the scale provided to determine that there is a parallax of \ang{;;0.1}.
+Then, using the parallax formula,
+\begin{equation}
+    \tan(\ang{;;0.1}) = \frac{r}{\SI{8}{\kilo\parsec}} \implies r = (\SI{8}{\kilo\parsec}) \cdot \tan(\ang{;;0.1}) = \SI{1.20e+14}{\meter}
+\end{equation}
+Judging by the timeline on the .gif, the period of S0-37 is close to 5 years and 2 months, or \SI{1.63e+8}{\second}.
+With that in mind, using Kepler's third law,
+\begin{align}
+    P^2 &= \frac{4\pi^2}{G (m_1 + m_2)} a^3 \\
+    \Rightarrow m_1 + \cancelto{0}{m_2} &= \frac{4\pi^2}{G P^2} a^3 = \SI{3.90e+36}{\kilogram}
+\end{align}
 
 \end{document}
