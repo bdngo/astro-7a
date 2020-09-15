@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import matplotlib.colors as clr
 from matplotlib.patches import Ellipse
 from math import sqrt
 
