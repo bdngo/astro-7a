@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{cancel}
+\usepackage[output-complex-root=j]{siunitx}
+\usepackage[american, nooldvoltagedirection]{circuitikz}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
+
+\newtheorem{theorem}{Theorem}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\parsec{pc}
+\DeclareSIUnit\erg{erg}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\unit}[1]{\bm{\hat{#1}}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\tpose}[1]{\left[#1\right]^{\! \top} \!\!}
+\newcommand{\diff}[1]{\frac{d}{d #1}}
+
+\lstset{
+    language=Python,
+    tabsize=4,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    frame=single
+}
+
+\title{ASTRO 7A PS03}
+\author{Bryan Ngo}
+\date{2020-09-14}
+
+\begin{document}
+
+\maketitle
+
+\section{Globular Cluster}
+
+The sum of the kinetic energy of the globular cluster is
+\begin{equation}
+    \langle K \rangle = \sum_i \frac{1}{2} m_i \bar{v}^2 = \frac{1}{2} M \bar{v}^2
+\end{equation}
+where \(\bar{v} = \SI{20}{\kilo\meter\per\second}\) is the average velocity of a particle in the system.
+The potential energy of the system is
+\begin{equation}
+    \langle U \rangle = -\frac{G M^2}{R}
+\end{equation}
+where \(R = \SI{1}{\parsec} = \SI{3.0857e+16}{\meter}\) is the radius of the system.
+By the virial theorem,
+\begin{align}
+    E &= \frac{1}{2} \langle U \rangle \\
+    \langle K \rangle + \langle U \rangle &= \frac{1}{2} \langle U \rangle \\
+    \Rightarrow \langle K \rangle &= -\frac{1}{2} \langle U \rangle \\
+    \frac{1}{2} M \bar{v}^2 &= \frac{1}{4} \frac{G M^2}{R} \\
+    \Rightarrow M &= \frac{2 R \bar{v}^2}{G} = \SI{3.70e+35}{\kilogram} = \num{1.86e+5} M_\odot
+\end{align}
+
+\section{Multiples, Clusters, \& Magnitudes}
+
+\subsection{}
+
+We can derive an equation for converting the negative logarithmic scale of apparent magnitude to linear brightness.
+This equation is
+\begin{equation}
+    b = 100^{-\frac{m}{5}}
+\end{equation}
+We can verify this by knowing that a star of \(m_1 = 0\) will be \(F_2\) times brighter than a star with \(m_2\).
+With this in mind, our brightness scale is linear so we can add them,
+\begin{align}
+    100^{-\frac{m_{12}}{5}} &= 100^{-\frac{m_1}{5}} + 100^{-\frac{m_2}{5}} = \num{8.82e+2} \\
+    \Rightarrow m_{12} &= -2.5 \log(\num{8.82e+2}) = \num{2.64}
+\end{align}
+
+\subsection{}
+
+We can use the equation
+\begin{equation} \label{eq:2b}
+    \frac{L}{L_\odot} = 100^{\frac{M_\odot - M}{5}}
+\end{equation}
+where \(M_\odot = \num{4.83}\) and \(L_\odot = \SI{3.828}{\watt}\) in order to solve for the luminosity ratio of each star.
+With that in mind, we take the linear combination of their luminosity ratios then use the equation in reverse to solve for the new absolute magnitude:
+\begin{align}
+    \frac{L_1}{L_\odot} &= \num{85.5} \\
+    \frac{L_2}{L_\odot} &= \num{34.0} \\
+    \frac{L_3}{L_\odot} &= \num{5.40} \\
+    \frac{L_4}{L_\odot} &= \num{0.855} \\
+    \Rightarrow \frac{50 L_1 + 200 L_2 + 800 L_3 + 6000 L_4}{L_\odot} &= 100^{\frac{M_\odot - M_{tot}}{5}} \\
+    \Rightarrow M &= M_\odot - 2.5 \log\left(\frac{50 L_1 + 200 L_2 + 800 L_3 + 6000 L_4}{L_\odot}\right) = \num{-5.95}
+\end{align}
+
+\subsection{}
+
+Using the distance modulus with \(d = \SI{3}{\kilo\parsec}\) and \(M = \num{-5.95}\),
+\begin{align}
+    m - M &= 5 \log\left(\frac{d}{\SI{10}{\parsec}}\right) \\
+    \Rightarrow m &= M - 5 \log\left(300\right) = \num{-18.3}
+\end{align}
+
+\section{A Dazzling Double}
+
+\subsection{}
+
+Using the flux ratio equation,
+\begin{equation}
+    \frac{F_A}{F_B} = 100^{\frac{m_B - m_A}{5}} = \num{6.31}
+\end{equation}
+
+\subsection{}
+
+Since they are orbiting each other, we can assume that their relative distances are very small compared to their absolute distances to Earth.
+With that in mind, we can make the approximation that
+\begin{equation}
+    \frac{L_A}{L_B} \approx \frac{F_A}{F_B} = \num{6.31}
+\end{equation}
+
+\subsection{}
+
+We can use combine our flux ratio with the true luminosity approximation to arrive at
+\begin{align}
+    \frac{F_A}{F_B} &= \frac{\frac{L_A}{\cancel{4 \pi} d_A^2}}{\frac{L_B}{\cancel{4 \pi} d_B^2}} = \frac{L_A d_B^2}{L_B d_A^2} \\
+    \Rightarrow \left(\frac{d_B}{d_A}\right)^2 &= \frac{F_A L_B}{F_B L_A} \\
+    \Rightarrow \frac{d_A}{d_B} &= \sqrt{\frac{F_B L_A}{F_A L_B}} = \num{0.91}
+\end{align}
+This means that Albireo B is more distant than Albireo A by the above factor.
+
+\subsection{}
+
+Using \autoref{eq:2b}, and replacing \(M_\odot\) and \(\frac{L}{L_\odot}\) with \(M_A = \num{-2.45}\) and the reciprocal of the previous luminosity ratio, respectively,
+\begin{align}
+    \frac{L_B}{L_A} &= 100^{\frac{M_A - M_B}{5}} \\
+    \Rightarrow M_B &= M_A - 2.5 \log\left(\frac{L_B}{L_A}\right) = M_A + 2.5 \log\left(\frac{L_A}{L_B}\right) = \num{-0.66}
+\end{align}
+
+\section{Binning in Frequency vs. Wavelength}
+
+\subsection{}
+
+The equation describing the flux collected is
+\begin{equation}
+    F_\lambda = \frac{L}{A} = \frac{E}{A t}
+\end{equation}
+Since all the terms on the right hand side are known constants and \(\Delta \lambda = \SI{900}{\angstrom}\), the histogram should appear flat.
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            title=Flux Density in Wavelength Space,
+            width=\textwidth,
+            height=\axisdefaultheight,
+            ybar interval,
+            xticklabel=\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick,
+            tick label style={font=\footnotesize},
+            xlabel={\(\lambda\) [\si{\angstrom}]},
+            ylabel={\(F_\lambda\) [\si{\erg\per\centi\meter\squared}]},
+            ymin=0, ymax=10e-5,
+        ]
+        \addplot+table[hist={bins=10}, x=wl, y=f, col sep=comma] {3a.csv};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection{}
+
+We can derive a similar equation to above,
+\begin{equation}
+    F_\lambda = \frac{L}{A} = \frac{E}{A t} = \frac{h \Delta \nu}{A t}
+\end{equation}
+where \(h = \SI{6.62607015e-27}{\erg\second}\) is the Planck constant.
+The width of divisions is
+\begin{equation}
+    \Delta \nu = \frac{1}{N} \left(\frac{c}{\lambda_min} - \frac{c}{\lambda_{max}}\right) = \SI{2.70e+14}{\hertz}
+\end{equation}
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            title=Flux Density in Frequency Space,
+            width=\textwidth,
+            height=\axisdefaultheight,
+            ybar interval,
+            xticklabel=\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick,
+            tick label style={font=\footnotesize},
+            xlabel={\(\nu\) [\si{\hertz}]},
+            ylabel={\(F_\nu\) [\si{\erg\per\centi\meter\squared}]},
+            ymin=0, ymax=2e-26,
+        ]
+        \addplot+table[hist={bins=10}, x=wl, y=f, col sep=comma] {3b.csv};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\end{document}
