@@ -31,7 +31,7 @@ with open('ps03/4a.csv', 'w') as d1, open('ps03/4b.csv', 'w') as d2:
         fields[0]: wl_bins[-1],
         fields[1]: f_wl
     })
-    f_divs = f_bins[0] + (num_bins) * delta_f
+    f_divs = f_bins[0] + num_bins * delta_f
     f_freq = f_wl * (delta_wl / f_divs)
     writer2.writerow({
         fields[0]: f_bins[-1],
