@@ -150,7 +150,7 @@ Using \autoref{eq:2b}, and replacing \(M_\odot\) and \(\frac{L}{L_\odot}\) with 
 
 The equation describing the flux collected is
 \begin{equation}
-    F_\lambda = \frac{L}{A} = \frac{E}{A t}
+    F_\lambda = \frac{L}{A} = \frac{E}{A t \lambda}
 \end{equation}
 Since all the terms on the right hand side are known constants and \(\Delta \lambda = \SI{900}{\angstrom}\), the histogram should appear flat.
 \begin{center}
@@ -162,11 +162,11 @@ Since all the terms on the right hand side are known constants and \(\Delta \lam
             ybar interval,
             xticklabel=\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick,
             tick label style={font=\footnotesize},
-            xlabel={\(\lambda\) [\si{\angstrom}]},
-            ylabel={\(F_\lambda\) [\si{\erg\per\centi\meter\squared}]},
-            ymin=0, ymax=10e-5,
+            xlabel={\(\lambda\) [\si{\centi\meter}]},
+            ylabel={\(F_\lambda\) [\si{\erg\per\second\per\centi\meter\cubed}]},
+            ymin=0, ymax=1e+1,
         ]
-        \addplot+table[hist={bins=10}, x=wl, y=f, col sep=comma] {3a.csv};
+        \addplot+table[hist={bins=10}, x=wl, y=f, col sep=comma] {4a.csv};
         \end{axis}
     \end{tikzpicture}
 \end{center}
@@ -175,9 +175,9 @@ Since all the terms on the right hand side are known constants and \(\Delta \lam
 
 We can derive a similar equation to above,
 \begin{equation}
-    F_\lambda = \frac{L}{A} = \frac{E}{A t} = \frac{h \Delta \nu}{A t}
+    F_\nu = F_\lambda \frac{\Delta \lambda}{\Delta \nu} = F_\lambda \frac{\Delta \lambda}{\nu_{min} + n \Delta \nu}
 \end{equation}
-where \(h = \SI{6.62607015e-27}{\erg\second}\) is the Planck constant.
+where \(n \in [1, 10]\) is the bin number.
 The width of divisions is
 \begin{equation}
     \Delta \nu = \frac{1}{N} \left(\frac{c}{\lambda_{min}} - \frac{c}{\lambda_{max}}\right) = \SI{2.70e+14}{\hertz}
@@ -193,22 +193,27 @@ The width of divisions is
             tick label style={font=\footnotesize},
             xlabel={\(\nu\) [\si{\hertz}]},
             ylabel={\(F_\nu\) [\si{\erg\per\centi\meter\squared}]},
-            ymin=0, ymax=2e-19,
+            ymin=0, ymax=4e-19,
         ]
-        \addplot+table[hist={bins=10}, x=wl, y=f, col sep=comma] {3b.csv};
+        \addplot+table[hist={bins=10}, x=wl, y=f, col sep=comma] {4b.csv};
         \end{axis}
     \end{tikzpicture}
 \end{center}
-% TODO: Fix this
 
 \subsection{}
+
+\(F_\lambda\) has no peak, but its constant value remains at \SI{10}{\erg\per\second\per\centi\meter\cubed}.
+\(F_\nu\) has a peak of \SI{3.0e-19}{\erg\per\centi\meter\squared} at at range of \SI{3e+14}{\hertz}--\SI{5.7e+14}{\hertz}.
 
 \subsection{}
 
 Since the astronomers are investigating the same object across the same time period, the energy should be the same.
-For Astronomer A, there are \(10\) bins with \(\Delta E = \SI{90}{\erg}\), there is a total energy of \(\SI{900}{\erg}\).
-For Astronomer B,
-% TODO: this
+For Astronomer A, there are \(10\) bins with \(\Delta E = \SI{90}{\erg}\), there is a total energy of \SI{900}{\erg}.
+For Astronomer B, we need to take the Riemann sum, which is the sum of the areas of the rectangles multiplied by area and time:
+\begin{equation}
+    E_\nu = A t \Delta \nu \sum_{i = 1}^N F_{\nu, i}
+\end{equation}
+Since both Astronomer A and Astronomer B are measuring the same object under the same conditions, the total energy for both should be \SI{900}{\erg}.
 
 \subsection{}
 
@@ -234,8 +239,8 @@ Setting both to zero,
 \end{align}
 Letting \(x_\nu = \frac{h \nu}{k T}\) and \(x_\lambda = \frac{h c}{\lambda k T}\),
 \begin{align}
-    (3 - x) e^x &= 3 \\
-    x e^x = 5e^x - 5 \implies (x - 5)e^x &= -5 \\
+    (3 - x_\nu) e^{x_\nu} &= 3 \\
+    x_\lambda e^{x_\lambda} = 5e^{x_\lambda} - 5 \implies (x_\lambda - 5) e^{x_\lambda} &= -5
 \end{align}
 By numerical methods, we show that \(x_\nu \approx \num{2.82}\) and \(x_\lambda \approx \num{4.96}\).
 Solving for those quantities,
@@ -247,5 +252,6 @@ Solving for those quantities,
     \Rightarrow \lambda &= \frac{h c}{k x_\lambda T} \\
     &\approx \frac{\SI{2.90e-3}{\kelvin\meter}}{T}
 \end{align}
+The bounds of our wavelength are \(\lambda \in (\SI{400}{\nano\meter}, \SI{700}{\nano\meter})\), meaning our temperature range is \(T \in (\SI{4140}{\kelvin}, \SI{7244}{\kelvin})\).
 
 \end{document}
