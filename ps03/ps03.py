@@ -3,8 +3,9 @@ import csv
 
 wl_bins = np.linspace(1000, 10000, 11)
 num_bins = 10
-h, c = 6.62607015e-27, 299782458e+2
-f_bins = np.linspace(c / wl_bins[0], c / wl_bins[-1], 11)
+h, c = 6.62607015e-27, 299782458
+f_bins = np.linspace(c / (wl_bins[0] * 10e-10), c / (wl_bins[-1] * 10e-10), 11)
+print(f_bins)
 
 with open('ps03/3a.csv', 'w') as d1, open('ps03/3b.csv', 'w') as d2:
     fields = ['wl', 'f']
@@ -19,6 +20,7 @@ with open('ps03/3a.csv', 'w') as d1, open('ps03/3b.csv', 'w') as d2:
         })
         div = f_bins[i] - f_bins[i + 1]
         f_freq = (h * div) / (20000 * 50)
+        print(f_freq)
         writer2.writerow({
             fields[0]: f_bins[i],
             fields[1]: f_freq

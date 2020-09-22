@@ -180,7 +180,7 @@ We can derive a similar equation to above,
 where \(h = \SI{6.62607015e-27}{\erg\second}\) is the Planck constant.
 The width of divisions is
 \begin{equation}
-    \Delta \nu = \frac{1}{N} \left(\frac{c}{\lambda_min} - \frac{c}{\lambda_{max}}\right) = \SI{2.70e+14}{\hertz}
+    \Delta \nu = \frac{1}{N} \left(\frac{c}{\lambda_{min}} - \frac{c}{\lambda_{max}}\right) = \SI{2.70e+14}{\hertz}
 \end{equation}
 \begin{center}
     \begin{tikzpicture}
@@ -193,11 +193,59 @@ The width of divisions is
             tick label style={font=\footnotesize},
             xlabel={\(\nu\) [\si{\hertz}]},
             ylabel={\(F_\nu\) [\si{\erg\per\centi\meter\squared}]},
-            ymin=0, ymax=2e-26,
+            ymin=0, ymax=2e-19,
         ]
         \addplot+table[hist={bins=10}, x=wl, y=f, col sep=comma] {3b.csv};
         \end{axis}
     \end{tikzpicture}
 \end{center}
+% TODO: Fix this
+
+\subsection{}
+
+\subsection{}
+
+Since the astronomers are investigating the same object across the same time period, the energy should be the same.
+For Astronomer A, there are \(10\) bins with \(\Delta E = \SI{90}{\erg}\), there is a total energy of \(\SI{900}{\erg}\).
+For Astronomer B,
+% TODO: this
+
+\subsection{}
+
+The Planck function expressed in terms of frequency and wavelength, respectively, is
+\begin{align}
+    B(\nu, T) &= \frac{2h \nu^3}{c^2 (e^{\frac{h \nu}{k T}} - 1)} = \frac{2h}{c^2} \nu^3 (e^{\frac{h \nu}{kT}} - 1)^{-1} \\
+    B(\lambda, T) &= \frac{2h c^2}{\lambda^5 (e^{\frac{h c}{\lambda k T}} - 1)} = 2hc^2 \lambda^{-5} (e^{\frac{h c}{\lambda k T}} - 1)^{-1}
+\end{align}
+Differentiating both with respect to \(\nu\) and \(\lambda\), respectively,
+\begin{align}
+    \frac{\partial}{\partial \nu} B(\nu, T) &= \frac{2h}{c^2} \left(3\nu^2 (e^{\frac{h \nu}{kT}} - 1)^{-1} - \frac{h}{k T} \nu^3 (e^{\frac{h \nu}{k T}} - 1)^{-2} e^{\frac{h \nu}{k T}}\right) \\
+    \frac{\partial}{\partial \lambda} B(\lambda, T) &= 2hc^2 \left(-5\lambda^{-6} (e^{\frac{h c}{\lambda k T}} - 1)^{-1} + \frac{h c}{k T}\lambda^{-7} (e^{\frac{h c}{\lambda k T}} - 1)^{-2} e^{\frac{h c}{\lambda k T}}\right)
+\end{align}
+Setting both to zero,
+\begin{align}
+    \frac{2h}{c^2} \left(3\nu^2 (e^{\frac{h \nu}{kT}} - 1)^{-1} - \frac{h}{k T} \nu^3 (e^{\frac{h \nu}{k T}} - 1)^{-2}e^{\frac{h \nu}{k T}}\right) &= 0 \\
+    \Rightarrow 3\nu^2 (e^{\frac{h \nu}{kT}} - 1)^{-1} &= \frac{h}{k T} \nu^3 (e^{\frac{h \nu}{k T}} - 1)^{-2}e^{\frac{h \nu}{k T}} \\
+    \Rightarrow 3e^{\frac{h \nu}{k T}} - 3 &= \frac{h \nu}{k T} e^{\frac{h \nu}{k T}} \\
+    \Rightarrow \left(3 - \frac{h \nu}{k T}\right) e^{\frac{h \nu}{k T}} &= 3 \\
+    2hc^2 \left(-5\lambda^{-6} (e^{\frac{h c}{\lambda k T}} - 1)^{-1} + \frac{h c}{k T}\lambda^{-7} (e^{\frac{h c}{\lambda k T}} - 1)^{-2} e^{\frac{h c}{\lambda k T}}\right) &= 0 \\
+    \Rightarrow \frac{h c}{k T}\lambda^{-7} (e^{\frac{h c}{\lambda k T}} - 1)^{-2} e^{\frac{h c}{\lambda k T}} &= 5\lambda^{-6} (e^{\frac{h c}{\lambda k T}} - 1)^{-1} \\
+    \Rightarrow \frac{h c}{\lambda k T} (e^{\frac{h c}{\lambda k T}} - 1)^{-1} e^{\frac{h c}{\lambda k T}} &= 5
+\end{align}
+Letting \(x_\nu = \frac{h \nu}{k T}\) and \(x_\lambda = \frac{h c}{\lambda k T}\),
+\begin{align}
+    (3 - x) e^x &= 3 \\
+    x e^x = 5e^x - 5 \implies (x - 5)e^x &= -5 \\
+\end{align}
+By numerical methods, we show that \(x_\nu \approx \num{2.82}\) and \(x_\lambda \approx \num{4.96}\).
+Solving for those quantities,
+\begin{align}
+    \frac{h \nu}{k T} &\approx \num{2.82} \\
+    \Rightarrow \nu &= \frac{k x_\nu T}{h} \\
+    &\approx (\SI{5.88e+10}{\hertz\per\kelvin})T \\
+    \frac{h c}{\lambda k T} &\approx \num{4.96} \\
+    \Rightarrow \lambda &= \frac{h c}{k x_\lambda T} \\
+    &\approx \frac{\SI{2.90e-3}{\kelvin\meter}}{T}
+\end{align}
 
 \end{document}
