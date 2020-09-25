@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{cancel}
+\usepackage[output-complex-root=j]{siunitx}
+\usepackage[american, nooldvoltagedirection]{circuitikz}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
+
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\unit}[1]{\bm{\hat{#1}}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\tpose}[1]{\left[#1\right]^{\! \top} \!\!}
+\newcommand{\diff}[1]{\frac{d}{d #1}}
+
+\lstset{
+    language=Python,
+    tabsize=4,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    frame=single
+}
+
+\title{ASTRO 7A PS04}
+\author{Bryan Ngo}
+\date{2020-09-25}
+
+\begin{document}
+
+\maketitle
+
+\section{Hot Dog}
+
+\subsection{}
+
+Using the Stefan-Boltzmann equation with \(A = \SI{0.75}{\meter\squared}\) and \(T = \SI{310}{\kelvin}\),
+\begin{equation}
+    L = A \sigma T^4 \implies L = \SI{392.8}{\watt}
+\end{equation}
+
+\subsection{}
+
+Using Wien's displacement law,
+\begin{equation}
+    \lambda_{max} = \frac{\SI{2.897785}{\kelvin\meter}}{\SI{310}{\kelvin}} = \SI{9.35}{\micro\meter}
+\end{equation}
+which lies in the infrared region of the EM specturm.
+
+\subsection{}
+
+With \(T = \SI{295}{\kelvin}\),
+\begin{equation}
+    L = A \sigma T^4 \implies L = \SI{322.1}{\watt}
+\end{equation}
+
+\subsection{}
+
+The total energy lost is
+\begin{equation}
+    L_{out} - L_{in} = \SI{70.7}{\watt}
+\end{equation}
+
+\section{Distant Relatives}
+
+\subsection{}
+
+The equation determining the total flux recieved from the KBO is
+\begin{equation}
+    F = \frac{L_\odot}{4 \pi R^2}
+\end{equation}
+Thus, the flux is
+\begin{equation} \label{eq:3a}
+    F = \frac{\SI{3.828e+26}{\watt}}{4 \pi (\SI{7.5e+12}{\meter})^2} = \SI{0.544}{\watt\per\meter\squared}
+\end{equation}
+From here, the flux received by the earth is simply
+\begin{equation}
+    F_\oplus = 0.15 \frac{\cancel{4 \pi} r^2 F}{ \cancel{4 \pi} D^2} = 0.15F \frac{r^2}{D^2} = \SI{9.73e-18}{\watt\per\meter\squared}
+\end{equation}
+where \(r, D\) is the radius of the KBO and the distance from the KBO to Earth (\SI{49}{\astronomicalunit}).
+
+\subsection{}
+
+Using the Stefan-Boltzmann equation,
+\begin{equation}
+    0.15F = \sigma T^4
+\end{equation}
+where \(F\) is as calculated in \autoref{eq:3a}.
+Therefore,
+\begin{equation}
+    T = \sqrt[4]{\frac{0.15F}{\sigma}} = \SI{1200}{\kelvin}
+\end{equation}
+
+\subsection{}
+
+\end{document}
