@@ -80,30 +80,56 @@ The total energy lost is
 
 The equation determining the total flux recieved from the KBO is
 \begin{equation}
-    F = \frac{L_\odot}{4 \pi R^2}
+    F = a \frac{L_\odot \cancel{\pi} r^2}{4 \cancel{\pi} R^2}
 \end{equation}
-Thus, the flux is
+where \(a, r, R\) is the albedo, radius of the KBO, and distance from the KBO (\SI{50}{\astronomicalunit}).
+Thus, the received flux is
 \begin{equation} \label{eq:3a}
-    F = \frac{\SI{3.828e+26}{\watt}}{4 \pi (\SI{7.5e+12}{\meter})^2} = \SI{0.544}{\watt\per\meter\squared}
+    F = 0.15 \frac{(\SI{3.828e+26}{\watt}) (\SI{80}{\kilo\meter})^2}{4 (\SI{7.5e+12}{\meter})^2} = \SI{1.64e+9}{\watt}
 \end{equation}
 From here, the flux received by the earth is simply
 \begin{equation}
-    F_\oplus = 0.15 \frac{\cancel{4 \pi} r^2 F}{ \cancel{4 \pi} D^2} = 0.15F \frac{r^2}{D^2} = \SI{9.73e-18}{\watt\per\meter\squared}
+    F_\oplus = \frac{F}{2 \pi (R - \SI{1}{\astronomicalunit})^2} = \SI{4.86e-18}{\watt}
 \end{equation}
-where \(r, D\) is the radius of the KBO and the distance from the KBO to Earth (\SI{49}{\astronomicalunit}).
+The factor of two in the numerator arises from the fact that only half of the surface area of the KBO is assumed to be emitting light.
 
 \subsection{}
 
 Using the Stefan-Boltzmann equation,
 \begin{equation}
-    0.15F = \sigma T^4
+    F = (1 - a) \frac{L_\odot r^2}{4 R^2} = \SI{9.30e+9}{\watt}
 \end{equation}
-where \(F\) is as calculated in \autoref{eq:3a}.
+The \(1 - a\) term arises from the fact that since \(a\) proportion of the light is reflected, the rest must be absorbed as heat.
+Therefore, the total flux radiated from the surface of the KBO is
+\begin{equation}
+    F_\oplus = \frac{F}{4 \pi r^2} = (1 - a) \frac{L_\odot}{16 \pi R^2} = \sigma T^4
+\end{equation}
+where the term is as normal because thermal radiation is assumed to radiate uniformly across the entire surface area.
 Therefore,
 \begin{equation}
-    T = \sqrt[4]{\frac{0.15F}{\sigma}} = \SI{1200}{\kelvin}
+    T = \sqrt[4]{\frac{F_\odot}{\sigma}} = \SI{37.8}{\kelvin}
 \end{equation}
 
 \subsection{}
+
+Using Wien's displacement law, we find the peak wavelength to be
+\begin{equation}
+    \lambda_{max} = \frac{\SI{3e-3}{\meter\kelvin}}{T} = \SI{7.67e-5}{\meter} = \SI{7.67e+5}{\angstrom}
+\end{equation}
+Since the peak wavelength is far beyond the range of the V-band, this must mean the V-band lies at a very small wavelength relative to the blackbody.
+Thus, we can use the Wien tail approximation,
+\begin{eqnarray}
+    B_\lambda(T) \approx \frac{2hc^2}{\lambda^5} e^{-\frac{hc}{\lambda k T}}
+\end{eqnarray}
+The combined thermal flux is simply
+\begin{equation}
+    I = \int_{\SI{5000}{\angstrom}}^{\SI{6000}{\angstrom}} \frac{2hc^2}{\lambda^5} e^{-\frac{hc}{\lambda k T}} \, d\lambda
+\end{equation}
+Letting \(u = \frac{hc}{\lambda k T}\) and \(du = -\frac{hc}{\lambda^2 k T} \, d\lambda\),
+\begin{align}
+    I &= \int_{\num{761.4}}^{\num{634.5}} \frac{2hc^2}{\lambda^3} \left(-\frac{k T}{h c}\right)e^{-u} \left(-\frac{hc}{\lambda^2 k T} \, d\lambda\right) \\
+    &= -2ckT \int_{\num{761.4}}^{\num{634.5}} u^3 \left(\frac{kT}{hc}\right)^3 e^{-u} \, du \\
+    &= \frac{2(kT)^4}{h^3c^2} \int_{\num{634.5}}^{\num{761.4}} u^3 e^{-u} \, du
+\end{align}
 
 \end{document}
