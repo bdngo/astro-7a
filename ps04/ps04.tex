@@ -87,10 +87,6 @@ Thus, the received flux is
 \begin{equation} \label{eq:3a}
     F = 0.15 \frac{(\SI{3.828e+26}{\watt}) (\SI{80}{\kilo\meter})^2}{4 (\SI{7.5e+12}{\meter})^2} = \SI{1.64e+9}{\watt}
 \end{equation}
-From here, the flux received by the earth is simply
-\begin{equation}
-    F_\oplus = \frac{F}{2 \pi (R - \SI{1}{\astronomicalunit})^2} = \SI{4.86e-18}{\watt}
-\end{equation}
 The factor of two in the numerator arises from the fact that only half of the surface area of the KBO is assumed to be emitting light.
 
 \subsection{}
@@ -118,18 +114,48 @@ Using Wien's displacement law, we find the peak wavelength to be
 \end{equation}
 Since the peak wavelength is far beyond the range of the V-band, this must mean the V-band lies at a very small wavelength relative to the blackbody.
 Thus, we can use the Wien tail approximation,
-\begin{eqnarray}
-    B_\lambda(T) \approx \frac{2hc^2}{\lambda^5} e^{-\frac{hc}{\lambda k T}}
-\end{eqnarray}
+\begin{equation}
+    B_\lambda(T) \approx \frac{2hc^2}{\lambda^5} e^{-\frac{hc}{\lambda k T}} = \frac{2h}{c^2} \nu^3 e^{-\frac{h \nu}{k T}}
+\end{equation}
 The combined thermal flux is simply
 \begin{equation}
-    I = \int_{\SI{5000}{\angstrom}}^{\SI{6000}{\angstrom}} \frac{2hc^2}{\lambda^5} e^{-\frac{hc}{\lambda k T}} \, d\lambda
+    I = \int_{\SI{5000}{\angstrom}}^{\SI{6000}{\angstrom}} \frac{2hc^2}{\lambda^5} e^{-\frac{hc}{\lambda k T}} \, d\lambda = \int_{\SI{634}{\hertz}}^{\SI{761}{\hertz}} \frac{2h}{c^2} \nu^3 e^{-\frac{h \nu}{k T}} \, d\nu
 \end{equation}
-Letting \(u = \frac{hc}{\lambda k T}\) and \(du = -\frac{hc}{\lambda^2 k T} \, d\lambda\),
-\begin{align}
-    I &= \int_{\num{761.4}}^{\num{634.5}} \frac{2hc^2}{\lambda^3} \left(-\frac{k T}{h c}\right)e^{-u} \left(-\frac{hc}{\lambda^2 k T} \, d\lambda\right) \\
-    &= -2ckT \int_{\num{761.4}}^{\num{634.5}} u^3 \left(\frac{kT}{hc}\right)^3 e^{-u} \, du \\
-    &= \frac{2(kT)^4}{h^3c^2} \int_{\num{634.5}}^{\num{761.4}} u^3 e^{-u} \, du
-\end{align}
+Using tabular integration,
+\begin{equation}
+    \begin{array}{c|c|c}
+        & D & I \\
+        \hline
+        + & \nu^3 & e^{-\frac{h \nu}{k T}} \\
+        - & 3\nu^2 & -\frac{k T}{h} e^{-\frac{h \nu}{k T}} \\
+        + & 6\nu & \left(\frac{k T}{h}\right)^2 e^{-\frac{h \nu}{k T}} \\
+        - & 6 & -\left(\frac{k T}{h}\right)^3 e^{-\frac{h \nu}{k T}} \\
+        + & 0 & \left(\frac{k T}{h}\right)^4 e^{-\frac{h \nu}{k T}}
+    \end{array}
+\end{equation}
+So our integral evaluates to
+\begin{equation}
+    I = \left.-\frac{2h}{c^2} e^{-\frac{h \nu}{k T}} \left(\frac{k T}{h} \nu^3 + \left(\frac{k T}{h}\right)^2 3\nu^2 + \left(\frac{k T}{h}\right)^3 6\nu + 6\left(\frac{k T}{h}\right)^4\right)\right|_{\SI{634}{\hertz}}^{\SI{761}{\hertz}} = \SI{4.12e-270}{\watt\per\meter\squared}
+\end{equation}
+The final thermal flux is thus
+\begin{equation}
+    F = I (4 \pi r^2) = \SI{3.31e-259}{\watt}
+\end{equation}
+
+\subsection{}
+
+The ratio is
+\begin{equation}
+    \frac{F_c}{F_a} = \frac{\SI{3.31e-259}{\watt}}{\SI{1.64e+9}{\watt}} = \num{2.02e-268}
+\end{equation}
+This ratio is extremely small, so it would be appropriate to ignore thermal flux.
+
+\section{Atomic Waves}
+
+The circumference having to be an integer wavelength implies
+\begin{equation}
+    2 \pi r = n \lambda
+\end{equation}
+
 
 \end{document}
