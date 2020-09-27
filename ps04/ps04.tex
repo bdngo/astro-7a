@@ -8,10 +8,12 @@
 \usepackage{graphicx}
 \usepackage{fullpage}
 \usepackage{hyperref}
+\usepackage{mhchem}
 
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\thesubsection}{\thesection.\alph{subsection}}
 \renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
+\renewcommand{\labelenumi}{\alph{enumi}.}
 
 \newtheorem{theorem}{Theorem}
 
@@ -153,9 +155,86 @@ This ratio is extremely small, so it would be appropriate to ignore thermal flux
 \section{Atomic Waves}
 
 The circumference having to be an integer wavelength implies
+\begin{align}
+    2 \pi r &= n \lambda \\
+    2 \pi \mu v r &= n \mu v \lambda \\
+    \Rightarrow L = \mu v r &= \frac{n \mu v \lambda}{2 \pi}
+\end{align}
+From here, we can substitute the de Broglie wavelength of the electron \(\lambda = \frac{h}{\mu v}\),
 \begin{equation}
-    2 \pi r = n \lambda
+    L = \mu v r = \frac{n h}{2 \pi} = n \hbar
 \end{equation}
 
+\section{Lonely Atoms}
+
+\subsection{}
+
+Since the electron is in a stable orbit, Coulomb's Law is equal and opposite to the centripetal force exerted by the proton,
+\begin{equation}
+    \bm{F} = -\frac{1}{4 \pi \epsilon_0} \frac{Z e^2}{r^2} \unit{r} = -\mu \frac{v^2}{r} \unit{r} \\
+\end{equation}
+where \(e\) is the elementary charge, with \(+Z e\) from the proton and \(-e\) from the one electron.
+If we examine the magnitude of the force,
+\begin{align}
+    \frac{1}{4 \pi \epsilon_0} \frac{Ze^2}{r^2} &= \mu \frac{v^2}{r} \label{eq:4a-1} \\
+    \Rightarrow \frac{Ze^2}{4 \pi \epsilon_0} &= \mu v^2 r = n \hbar v = \frac{(n \hbar)^2}{\mu r} \\
+    \Rightarrow r &= \frac{4 \pi \epsilon_0 \hbar^2}{Z e^2 \mu} n^2 \label{eq:4a-2}
+\end{align}
+As for the energies, if we solve \autoref{eq:4a-1} for \(E_k = \frac{1}{2} \mu v^2\),
+\begin{equation}
+    E_k = \frac{1}{8 \pi \epsilon_0} \frac{Z e^2}{r}
+\end{equation}
+The potential energy can be taken as
+\begin{align}
+    E_u = -\frac{1}{4 \pi \epsilon_0} \int_r^\infty \frac{Z e^2}{r^2} \, dr = -\frac{1}{4 \pi \epsilon_0} \left(\cancelto{0}{-\frac{Ze^2}{\infty}} + \frac{Z e^2}{r}\right) = -\frac{1}{4 \pi \epsilon_0} \frac{Z e^2}{r}
+\end{align}
+So the total energy of the system is
+\begin{equation}
+    E = E_k + E_u = \frac{1}{8 \pi \epsilon_0} - \frac{1}{4 \pi \epsilon_0} \frac{Z e^2}{r} = -\frac{1}{8 \pi \epsilon_0} \frac{Z e^2}{r}
+\end{equation}
+Plugging in \autoref{eq:4a-2},
+\begin{equation}
+    E = -\frac{1}{8 \pi \epsilon_0} \frac{Z e^2}{\frac{4 \pi \epsilon_0 \hbar^2}{Z e^2 \mu} n^2} = -\frac{\mu (Z e^2)^2}{32 \pi^2 \epsilon_0^2 \hbar^2} \frac{1}{n^2}
+\end{equation}
+
+\subsection{}
+
+For \ce{He^{II}}, \(Z = 2, n = 1\),
+\begin{align}
+    r &= \frac{4 \pi \epsilon_0 \hbar^2}{Z e^2 \mu} n^2 = \SI{2.66e-11}{\meter} \\
+    E_1 &= -\frac{\mu (Z e^2)^2}{32 \pi^2 \epsilon_0^2 \hbar^2} \frac{1}{n^2} = \SI{-8.72e-18}{\joule} \\
+    E_i &= -E_1 = \SI{8.72e-18}{\joule}
+\end{align}
+
+\subsection{}
+
+for \ce{Li^{III}}, \(Z = 3, n = 1\),
+\begin{align}
+    r &= \frac{4 \pi \epsilon_0 \hbar^2}{Z e^2 \mu} n^2 = \SI{1.76e-11}{\meter} \\
+    E_1 &= -\frac{\mu (Z e^2)^2}{32 \pi^2 \epsilon_0^2 \hbar^2} \frac{1}{n^2} = \SI{-1.96e-17}{\joule} \\
+    E_i &= -E_1 = \SI{1.96e-17}{\joule}
+\end{align}
+
+\subsection{}
+
+The ionization energy of \ce{H^I} can be calculated as \(\SI{13.6}{\electronvolt} = \SI{2.18e-18}{\joule}\).
+Thus,
+\begin{align}
+    \frac{E_{\ce{H^I}}}{E_{\ce{He^{II}}}} &= \frac{1}{4} \\
+    \frac{E_{\ce{H^I}}}{E_{\ce{Li^{III}}}} &= \frac{1}{9} \\
+    \frac{E_{\ce{He^{II}}}}{E_{\ce{Li^{III}}}} &= \frac{4}{9}
+\end{align}
+From the ratios, it is clear that \(E_{\ce{H^I}} < E_{\ce{He^{II}}} < E_{\ce{Li^{III}}}\).
+
+\section{When the Light Goes Out in the Spectrum}
+
+\begin{enumerate}
+    \item The Balmer Break is caused by a deionization from the 2nd energy level, since electrons at the 2nd energy level are absorbing photons.
+    \item The energy of the photons is \(E = \frac{h c}{\lambda} = \SI{5.45e-19}{\joule}\).
+    \item This break occurs because the light used to measure the spectrum of a star is absorbed to deionize free electrons in the star.
+    The reason why this does not appear to be an absorption line is because the Balmer break also occurs for all \(\lambda \leqslant \SI{364.6}{\nano\meter}\), as ionization only has an upper bound, so this is merely dependent on the energy of the electron being deionized.
+    \item Since the wavelength is smaller and thus the energy of the photons greater, the far-UV break must be a deionization to the ground state.
+    Since this is the domain of the Lyman series, this can be considered the Lyman break.
+\end{enumerate}
 
 \end{document}
