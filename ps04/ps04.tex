@@ -82,25 +82,25 @@ The total energy lost is
 
 The equation determining the total flux recieved from the KBO is
 \begin{equation}
-    F = a \frac{L_\odot \cancel{\pi} r^2}{4 \cancel{\pi} R^2}
+    F = a \frac{L_\odot \cancel{\pi} r^2}{4 \cancel{\pi} R^2} = a \frac{L_\odot r^2}{4 R^2} = 0.15 \frac{(\SI{3.828e+26}{\watt}) (\SI{80}{\kilo\meter})^2}{4 (\SI{7.5e+12}{\meter})^2} = \SI{1.64e+9}{\watt}
 \end{equation}
 where \(a, r, R\) is the albedo, radius of the KBO, and distance from the KBO (\SI{50}{\astronomicalunit}).
-Thus, the received flux is
+Thus, the received flux from Earth is
 \begin{equation} \label{eq:3a}
-    F = 0.15 \frac{(\SI{3.828e+26}{\watt}) (\SI{80}{\kilo\meter})^2}{4 (\SI{7.5e+12}{\meter})^2} = \SI{1.64e+9}{\watt}
+    F_\odot = \frac{F}{2 \pi (R - \SI{1}{\astronomicalunit})^2} = \SI{4.86e-18}{\watt\per\meter\squared}
 \end{equation}
 The factor of two in the numerator arises from the fact that only half of the surface area of the KBO is assumed to be emitting light.
 
 \subsection{}
 
-Using the Stefan-Boltzmann equation,
+Slightly modifying the equation from the above problem, substituting \(a\) for \(1 - a\) since the remainder of non-reflected energy must go towards thermal radiation,
 \begin{equation}
     F = (1 - a) \frac{L_\odot r^2}{4 R^2} = \SI{9.30e+9}{\watt}
 \end{equation}
 The \(1 - a\) term arises from the fact that since \(a\) proportion of the light is reflected, the rest must be absorbed as heat.
 Therefore, the total flux radiated from the surface of the KBO is
 \begin{equation}
-    F_\oplus = \frac{F}{4 \pi r^2} = (1 - a) \frac{L_\odot}{16 \pi R^2} = \sigma T^4
+    F_{KBO} = \frac{F}{4 \pi r^2} = (1 - a) \frac{L_\odot}{16 \pi R^2} = \sigma T^4
 \end{equation}
 where the term is as normal because thermal radiation is assumed to radiate uniformly across the entire surface area.
 Therefore,
@@ -139,16 +139,12 @@ So our integral evaluates to
 \begin{equation}
     I = \left.-\frac{2h}{c^2} e^{-\frac{h \nu}{k T}} \left(\frac{k T}{h} \nu^3 + \left(\frac{k T}{h}\right)^2 3\nu^2 + \left(\frac{k T}{h}\right)^3 6\nu + 6\left(\frac{k T}{h}\right)^4\right)\right|_{\SI{634}{\hertz}}^{\SI{761}{\hertz}} = \SI{4.12e-270}{\watt\per\meter\squared}
 \end{equation}
-The final thermal flux is thus
-\begin{equation}
-    F = I (4 \pi r^2) = \SI{3.31e-259}{\watt}
-\end{equation}
 
 \subsection{}
 
 The ratio is
 \begin{equation}
-    \frac{F_c}{F_a} = \frac{\SI{3.31e-259}{\watt}}{\SI{1.64e+9}{\watt}} = \num{2.02e-268}
+    \frac{F_c}{F_a} = \frac{\SI{4.12e-270}{\watt\per\meter\squared}}{\SI{4.86e-18}{\watt\per\meter\squared}} = \num{8.47e-253}
 \end{equation}
 This ratio is extremely small, so it would be appropriate to ignore thermal flux.
 
@@ -229,11 +225,11 @@ From the ratios, it is clear that \(E_{\ce{H^I}} < E_{\ce{He^{II}}} < E_{\ce{Li^
 \section{When the Light Goes Out in the Spectrum}
 
 \begin{enumerate}
-    \item The Balmer Break is caused by a deionization from the 2nd energy level, since electrons at the 2nd energy level are absorbing photons.
+    \item The Balmer break is caused by a ionization from the 2nd energy level, since electrons at the 2nd energy level are absorbing photons.
     \item The energy of the photons is \(E = \frac{h c}{\lambda} = \SI{5.45e-19}{\joule}\).
-    \item This break occurs because the light used to measure the spectrum of a star is absorbed to deionize free electrons in the star.
-    The reason why this does not appear to be an absorption line is because the Balmer break also occurs for all \(\lambda \leqslant \SI{364.6}{\nano\meter}\), as ionization only has an upper bound, so this is merely dependent on the energy of the electron being deionized.
-    \item Since the wavelength is smaller and thus the energy of the photons greater, the far-UV break must be a deionization to the ground state.
+    \item This break occurs because the light used to measure the spectrum of a star is absorbed to ionize bound electrons in the star.
+    The reason why this does not appear to be an absorption line is because the Balmer break also occurs for all \(\lambda \leqslant \SI{364.6}{\nano\meter}\), as ionization only has an upper bound, so this is merely dependent on the energy of the electron being ionized.
+    \item Since the wavelength is smaller and thus the energy of the photons greater, the far-UV break must be a ionization from the ground state.
     Since this is the domain of the Lyman series, this can be considered the Lyman break.
 \end{enumerate}
 
