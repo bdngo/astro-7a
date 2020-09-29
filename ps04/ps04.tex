@@ -105,7 +105,7 @@ Therefore, the total flux radiated from the surface of the KBO is
 where the term is as normal because thermal radiation is assumed to radiate uniformly across the entire surface area.
 Therefore,
 \begin{equation}
-    T = \sqrt[4]{\frac{F_\odot}{\sigma}} = \SI{37.8}{\kelvin}
+    T = \sqrt[4]{\frac{F_{KBO}}{\sigma}} = \SI{37.8}{\kelvin}
 \end{equation}
 
 \subsection{}
@@ -139,12 +139,24 @@ So our integral evaluates to
 \begin{equation}
     I = \left.-\frac{2h}{c^2} e^{-\frac{h \nu}{k T}} \left(\frac{k T}{h} \nu^3 + \left(\frac{k T}{h}\right)^2 3\nu^2 + \left(\frac{k T}{h}\right)^3 6\nu + 6\left(\frac{k T}{h}\right)^4\right)\right|_{\SI{634}{\hertz}}^{\SI{761}{\hertz}} = \SI{4.12e-270}{\watt\per\meter\squared}
 \end{equation}
+Afterwards we must calculate the integral of the \emph{true} Planck function across the entire spectrum, yielding the bolometric flux,
+\begin{equation}
+    \int_0^\infty B_\lambda(T) \, d\lambda = \SI{0.0368}{\watt\per\meter\squared}
+\end{equation}
+The final step is to determine the bolometrix flux
+\begin{equation}
+    F_{bol} = \frac{r^2 \sigma T^4}{(R - \SI{1}{\astronomicalunit})^2} = \SI{1.38e-17}{\watt\per\meter\squared}
+\end{equation}
+So the thermal flux is
+\begin{equation}
+    F_c = F_{bol} \frac{\int_{\SI{5000}{\angstrom}}^{\SI{6000}{\angstrom}} B_\lambda(T) \, d\lambda}{\int_0^\infty B_\lambda(T) \, d\lambda} = \SI{1.17e-285}{\watt\per\meter\squared}
+\end{equation}
 
 \subsection{}
 
 The ratio is
 \begin{equation}
-    \frac{F_c}{F_a} = \frac{\SI{4.12e-270}{\watt\per\meter\squared}}{\SI{4.86e-18}{\watt\per\meter\squared}} = \num{8.47e-253}
+    \frac{F_c}{F_a} = \frac{\SI{4.12e-270}{\watt\per\meter\squared}}{\SI{4.86e-18}{\watt\per\meter\squared}} = \num{3.37e-268} \approx 0
 \end{equation}
 This ratio is extremely small, so it would be appropriate to ignore thermal flux.
 
@@ -221,6 +233,7 @@ Thus,
     \frac{E_{\ce{He^{II}}}}{E_{\ce{Li^{III}}}} &= \frac{4}{9}
 \end{align}
 From the ratios, it is clear that \(E_{\ce{H^I}} < E_{\ce{He^{II}}} < E_{\ce{Li^{III}}}\).
+It is \(4 \times\) easier to remove a hydrogen electron than a helium electron, and \(9 \times\) easier than a lithium ionization.
 
 \section{When the Light Goes Out in the Spectrum}
 
