@@ -55,8 +55,8 @@
     D_Y &= \SI{1.016}{\meter} \\
     A_L &= \pi \frac{D_L^2}{4} = \SI{0.66}{\meter\squared} \\
     A_Y &= \pi \frac{D_Y^2}{4} = \SI{0.81}{\meter\squared} \\
-    \theta_L &= 1.22 \frac{\SI{600}{\nano\meter}}{D_L} = \SI{8.0e-7}{\radian} = \SI{5.02e-5}{\arcsecond} \\
-    \theta_Y &= 1.22 \frac{\SI{600}{\nano\meter}}{D_Y} = \SI{7.2e-7}{\radian} = \SI{4.52e-5}{\arcsecond}
+    \theta_L &= 1.22 \frac{\SI{600}{\nano\meter}}{D_L} = \SI{8.0e-7}{\radian} = \SI{0.16}{\arcsecond} \\
+    \theta_Y &= 1.22 \frac{\SI{600}{\nano\meter}}{D_Y} = \SI{7.2e-7}{\radian} = \SI{0.15}{\arcsecond}
 \end{align}
 The Yerkes refractor has a higher resolution since it can resolve objects with a smaller angle between them.
 
@@ -75,10 +75,10 @@ A smaller focal ratio means a faster optical system since the collecting area is
 \subsection{}
 
 \begin{equation}
-    \frac{d\theta}{dy} = \frac{1}{f}
+    m = \frac{f_{obj}}{f_{eye}}
 \end{equation}
-Since we want to magnify the image of Saturn by a factor of \(50\) our \(y\)-factor increases by a factor of \(50\)
-To maintain the equality we must also increase our focal length by a factor of \(50\), or \(50 \cdot \SI{17.37}{\meter} =\SI{868.5}{\meter}\).
+Since we want to magnify the image of Saturn by a factor of \(50\) our \(m\)-factor increases by a factor of \(50\).
+Thus, we need a focal length of the eyepiece to be divided by \(50\), or \SI{0.3474}{\meter}.
 
 \subsection{}
 
@@ -86,15 +86,16 @@ To maintain the equality we must also increase our focal length by a factor of \
     \begin{array}{c|c|c}
         1.22 \frac{\lambda}{D} & D_S = \SI{3.048}{\meter} & D_K = \SI{0.762}{\meter} \\
         \hline
-        \SI{500}{\nano\meter} & \SI{2.0e-7}{\radian} = \SI{1.3e-5}{\arcsecond} & \SI{8.0e-7}{\radian} = \SI{5.03e-5}{\arcsecond} \\
+        \SI{500}{\nano\meter} & \SI{2.0e-7}{\radian} = \SI{0.041}{\arcsecond} & \SI{8.0e-7}{\radian} = \SI{0.16}{\arcsecond} \\
         \hline
-        \SI{1}{\micro\meter} & \SI{4.0e-7}{\radian} = \SI{2.5e-5}{\arcsecond} & \SI{1.6e-6}{\radian} = \SI{1.0e-4}{\arcsecond}
+        \SI{1}{\micro\meter} & \SI{4.0e-7}{\radian} = \SI{0.08}{\arcsecond} & \SI{1.6e-6}{\radian} = \SI{0.33}{\arcsecond}
     \end{array}
 \end{equation}
 
 \subsection{}
 
-It is possible to obtain diffraction-limited observations with all three telescopes, since the seeing angle is about \num{10000} times larger than the largest diffraction limit.
+It is not possible to obtain diffraction-limited observations using any of the telescopes since the seeing angle is greater than any of the diffraction limits, so they are resolvable using conventional methods.
+Diffraction-limited observations mean they are no more than the diffraction limit.
 
 \subsection{}
 
@@ -128,8 +129,8 @@ Plugging in,
 \end{align}
 Then, we can use the formulae
 \begin{align}
-    R_s &= \frac{v_r}{2} (t_a - t_b) = \SI{2.1e+8}{\meter} = \num{300} R_\odot \\
-    R_\ell &= R_s + \frac{v_r}{2} (t_c - t_b) = \SI{7.7e+8}{\meter} = \num{1105} R_\odot 
+    R_s &= \frac{v_r}{2} (t_a - t_b) = \SI{2.1e+8}{\meter} = \num{0.29} R_\odot \\
+    R_\ell &= R_s + \frac{v_r}{2} (t_c - t_b) = \SI{7.7e+8}{\meter} = \num{1.1} R_\odot 
 \end{align}
 
 \subsection{}
@@ -183,7 +184,7 @@ So the system is indeed resolvable with the Keck telescopes, barring atmospheric
 
 Then, using the distance modulus,
 \begin{equation}
-    M = m - 5 \log\left(\frac{d}{\SI{10}{\parsec}}\right) = \num{5.7}
+    M = m - 5 \log\left(\frac{d}{\SI{10}{\parsec}}\right) = \num{5.75}
 \end{equation}
 
 \subsection{}
@@ -192,9 +193,8 @@ The hotter star is the first one, since \(\frac{T_1}{T_2} > 1\).
 First, we find the uneclipsed and cooler stars' flux by comparing it to the Sun,
 \begin{align}
     L_{tot} &= L_\odot 100^{\frac{M_\odot - M}{5}} = \SI{1.5e+26}{\watt} \\
-    M_p &= m_p - 5 \log\left(\frac{d}{\SI{10}{\parsec}}\right) = \num{6.9} \\
-    L_p &= L_\odot 100^{\frac{M_\odot - M_p}{5}} = \SI{5.5e+25}{\watt} \\
-    L_\ell &= L_{tot} - L_p = \sigma T_1^4 \implies T_1 = \SI{2.0e+8}{\kelvin}
+    L_{tot} &= 4 \pi \sigma (R_s^2 T_s^4 + R_\ell^2 T_\ell^4) = 4 \pi \sigma \left(R_s^2 T_s^4 + R_\ell^2 \left(\frac{T_\ell}{T_s} T_s\right)^4\right) \\
+    \Rightarrow T_s^4 &= \frac{L_{tot}}{4 \pi \sigma \left(R_s^2 + R_\ell^2 \frac{T_\ell^4}{T_s^4}\right)} = \SI{5932}{\kelvin}
 \end{align}
 where \(M = 5.7\) as found above.
 
@@ -202,6 +202,44 @@ where \(M = 5.7\) as found above.
 
 \subsection{}
 
+Suppose we use the shifting in periods to measure the radial velocity,
+\begin{equation}
+    \frac{\Delta P}{P_0} = \frac{v_r}{c}
+\end{equation}
+where \(P_0 = \SI{0.714890}{\second}\) and \(\Delta P = \SI{750}{\micro\second}\).
+The radial velocity is thus \SI{3.14e+5}{\meter\per\second}.
+Since the mass function sets a lower limit on \(m_2\), we can simply find it by
+\begin{equation}
+    m_2 > \frac{P}{2 \pi G} v_r^3 = \SI{2.5e+31}{\kilogram}
+\end{equation}
 
+\subsection{}
+
+Now that we have both radial velocities, the ratio of the masses is
+\begin{equation}
+    \frac{m_1}{m_2} = \frac{v_r}{K_C} = \num{15.7}
+\end{equation}
+This is all we can gather about the masses since we do not have any information about the inclination of the system.
+
+\subsection{}
+
+Since we have inclination, there are no unknowns for finding the total mass,
+\begin{equation}
+    m_1 + m_2 = \frac{P}{2 \pi G} (v_r + K_C)^3 = \SI{3.0e+31}{\kilogram} \\
+\end{equation}
+And we can also find the individual masses,
+\begin{align}
+    m_1 &= \frac{m_1 + m_2}{1 + \frac{m_2}{m_1}} = \SI{2.8e+31}{\kilogram} = 0.32 M_\odot \\
+    m_2 &= \frac{m_1 + m_2}{1 + \frac{m_1}{m_2}} = \SI{1.8e+30}{\kilogram} = 0.77 M_\odot
+\end{align}
+
+\subsection{}
+
+Judging by the graph, the eclipse takes up \(20\%\) of the total orbital period, or \SI{0.77}{\day}.
+The radii are thus
+\begin{align}
+    v_r &= \SI{3.34e+5}{\meter\per\second} \\
+    R_s &= \frac{v_r}{2} (t_a - t_b) = \SI{1.1e+10}{\meter} = \num{16} R_\odot
+\end{align}
 
 \end{document}
