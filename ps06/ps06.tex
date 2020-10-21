@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{cancel}
+\usepackage[output-complex-root=j]{siunitx}
+\usepackage[american, nooldvoltagedirection]{circuitikz}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
+\newcommand{\lemmaautorefname}{Lemma}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\DeclareSIUnit\parsec{pc}
+\DeclareSIUnit\year{yr}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\unit}[1]{\bm{\hat{#1}}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\tpose}[1]{\left[#1\right]^{\! \top} \!\!}
+\newcommand{\diff}[1]{\frac{d}{d #1}}
+
+\lstset{
+    language=Python,
+    tabsize=4,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    frame=single
+}
+
+\title{ASTRO 7A PS 06}
+\author{Bryan Ngo}
+\date{2020-10-19}
+
+\begin{document}
+
+\maketitle
+
+\section{Barnard's Star}
+
+\subsection{}
+
+Using the equation
+\begin{equation}
+    v_r = c \frac{\lambda - \lambda_0}{\lambda_0}
+\end{equation}
+we get \(v_r = \SI{-1.12e+5}{\meter\per\second}\).
+Thus, it is actually moving towards Earth.
+
+\subsection{}
+
+The transverse velocity can be defined as
+\begin{equation}
+    v_\theta = r \mu
+\end{equation}
+where \(r, \mu\) is the distance to the system and proper motion, respectively.
+Using the parallax angle, we can determine the distance to Barnard's star to be \(d = \frac{1}{p} = \SI{1.82}{\parsec} = \SI{5.6e+16}{\meter}\).
+Converting the proper motion to SI units,
+\begin{equation}
+    \frac{\SI{10.3577}{\arcsecond}}{\SI{1}{\year}} \cdot \frac{\SI{1}{\year}}{\SI{365}{\day}} \cdot \frac{\SI{1}{\day}}{\SI{86400}{\second}} \cdot \frac{\SI{206265}{\radian}}{\SI{1}{\arcsecond}} = \SI{6.77e-2}{\radian\per\second}
+\end{equation}
+So the transverse velocity is \(v_\theta = \SI{3.8e+15}{\meter\per\second}\).
+
+\subsection{}
+
+The speed through space is simply \(v = \sqrt{v_r^2 + v_\theta^2} = \SI{3.8e+15}{\meter\per\second}\).
+
+\section{RV Semiamplitude}
+
+Given nearly circular orbits, the velocity of the planet's orbit is
+\begin{equation}
+    v_p = \frac{2 \pi r}{P}
+\end{equation}
+where we assume that \(r \approx a\) since \(e \approx 0\).
+
+\section{Single-Transit Event}
+
+\subsection{}
+
+The velocity, given the assumptions, is
+\begin{equation}
+    v = \frac{2 \pi a}{P}
+\end{equation}
+
+\subsection{}
+
+The duration of the transit is
+\begin{equation}
+    \tau = \frac{2 R_\star}{\frac{2 \pi a}{P}} = \frac{R_\star P}{\pi a}
+\end{equation}
+
+\subsection{}
+
+Substituting Kepler's third law,
+\begin{align}
+    \tau = \frac{R_\star P}{\pi a} &= \frac{R_\star P}{\pi \left(\frac{P^2 G M_\star}{4 \pi^2}\right)^{\frac{1}{3}}} \\
+    &= \frac{R_\star P (4 \pi^2)^{\frac{1}{3}}}{\pi (P^2 G \rho_\star \frac{4}{3} \pi R_\star^3)^{\frac{1}{3}}} \\
+    &= \frac{\cancel{R_\star} P \cancel{4^{\frac{1}{3}}} 3^{\frac{1}{3}} \pi^{\frac{2}{3}}}{\pi^{\frac{4}{3}} P^{\frac{2}{3}} G^{\frac{1}{3}} \rho_\star^\frac{1}{3} \cancel{4^{\frac{1}{3}}} \cancel{R_\star}} \\
+    &= \frac{3^{\frac{1}{3}} P^{\frac{1}{3}}}{\pi^{\frac{2}{3}} G^{\frac{1}{3}} \rho_\star^{\frac{1}{3}}}
+\end{align}
+
+\subsection{}
+
+Using Wien's displacement law,
+\begin{equation}
+    T = \frac{\SI{2.897e-3}{\meter\kelvin}}{\lambda_{max}} = \SI{5040}{\kelvin}
+\end{equation}
+
+\subsection{}
+
+The parallax distance is
+\begin{equation}
+    d = \frac{1}{p} = \SI{125}{\parsec}
+\end{equation}
+
+\subsection{}
+
+First, finding the absolute magnitude,
+\begin{equation}
+    M = m - 5 \log\left(\frac{d}{\SI{10}{\parsec}}\right) = \num{5.52}
+\end{equation}
+where \(m = 5, d = \SI{125}{\parsec}\).
+Then, finding the luminosity relative to the Sun,
+\begin{equation}
+    L_\star = L_\odot 100^{\frac{M_\odot - M}{5}} = \SI{1.87e26}{\watt}
+\end{equation}
+Then, by the Stefan-Boltzmann law,
+\begin{equation}
+    R_\star = \left(\frac{L_\star}{4 \pi \sigma T^4}\right)^{\frac{1}{2}} = \SI{6.39e+8}{\meter} = 0.91 R_\odot
+\end{equation}
+
+\subsection{}
+
+Using the transit depth,
+\begin{equation}
+    \delta = \left(\frac{R_p}{R_\star}\right)^2 \implies R_p = R_\star \sqrt[]{\delta} = \SI{5.84e+7}{\meter} = 9.15 R_\oplus
+\end{equation}
+
+\subsection{}
+
+\begin{equation}
+    \frac{L}{L_\odot} = \left(\frac{M}{M_\odot}\right)^a \implies M = M_\odot \left(\frac{L}{L_\odot}\right)^\frac{1}{a} = 0.8 M_\odot = \SI{1.63e+30}{\kilogram}
+\end{equation}
+where \(a = 3.5\), and the luminosity ratio was determined from their absolute magnitudes.
+
+\subsection{}
+
+The density of the star is
+\begin{equation}
+    \rho_\star = \frac{M_\star}{\frac{4}{3} \pi R_\star^3} = \SI{1.5e+3}{\kilogram\per\meter\cubed}
+\end{equation}
+Then, using the equation
+\begin{equation}
+    \tau = \frac{3^{\frac{1}{3}} P^{\frac{1}{3}}}{\pi^{\frac{2}{3}} G^{\frac{1}{3}} \rho_\star^{\frac{1}{3}}}
+\end{equation}
+where \(\tau = \SI{6.73}{\hour} = \SI{24228}{\second}\).
+Rearranging,
+\begin{equation}
+    P = \frac{\tau^3 \pi^2 G \rho_\star}{3} = \SI{4.67e+6}{\second} = \SI{54}{\day}
+\end{equation}
+
+\subsection{}
+
+This makes sense since the orbital period is longer than \(27\) days, so at most one transit should be observed at a time slot.
+
+\subsection{}
+
+Matching up the radius as predicted for the planet, we can predict the mass of the planet to be approximately that of Saturn, or around \(100 M_\oplus\).
+This was determined by first finding the diameter in Earth masses, which is approximately \(9.15 D_\oplus\).
+Then, we matched up to the graph and picked the closest planet that was labeled.
+From \url{https://www.exoplanets.org}, it has the mass as described above.
+
+\subsection{}
+
+Finding the semimajor axis, we find it to be \(a = \SI{3.9e+10}{\meter}\)
+Assuming a circular orbit and full inclination,
+\begin{equation}
+    K = \sqrt[]{\frac{G}{a (m_p + m_\star)}} m_p = \SI{19.39}{\meter\per\second}
+\end{equation}
+This amplitude is about \(19\) times larger than the smallest resolution of radial velocity spectrographs.
+
+\end{document}
