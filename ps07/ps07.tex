@@ -195,7 +195,7 @@ The Saha ratio for Calcium, given \(\chi_I = \SI{6.11}{\electronvolt}, Z_I = \nu
 \begin{equation}
     \frac{N_{II}}{N_I} = \frac{2 kT Z_{i + 1}}{P_e Z_i} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}} = \num{918.3}
 \end{equation}
-Meaning that \(\frac{N_{II}}{N_I + N_{II}} = \num{0.99}\).
+Meaning that \(\frac{N_{II}}{N_I + N_{II}} = \num{0.998}\).
 
 \subsection{}
 
@@ -210,17 +210,18 @@ Likewise, the \ce{Ca^{II} K} line photon has an energy difference from the groun
 
 Using the Boltzmann equation with \(g_1 = 2, g_2 = 4, \Delta E_{21} = \SI{3.15}{\electronvolt}\),
 \begin{align}
-    \frac{N_2}{N_1} &= \frac{g_2}{g_1} e^{-\frac{\Delta E}{kT}} = \num{3.57e-3} \\
-    \Rightarrow \frac{N_2}{N_1 + N_2} &= \num{3.56e-3} \\
-    \Rightarrow \frac{N_2}{N_{tot}} &= \underbrace{\left(1 - \frac{N_{II}}{N_I + N_{II}}\right)}_{\frac{N_I}{N_I + N_{II}}} \frac{N_2}{N_1 + N_2} = \num{3.87e-6}
+    \frac{N_1}{N_2} &= \left(\frac{g_2}{g_1} e^{-\frac{\Delta E_{21}}{kT}}\right)^{-1} = \num{279.9} \\
+    \Rightarrow \frac{N_1}{N_1 + N_2} &= \num{0.996} \\
+    \Rightarrow \frac{N_1}{N_{tot}} &= \frac{N_{II}}{N_I + N_{II}} \frac{N_1}{N_1 + N_2} = \num{0.995}
 \end{align}
-where we get \(\frac{N_I}{N_I + N_{II}}\) from \textbf{4.a}.
+where we get \(\frac{N_{II}}{N_I + N_{II}}\) from \textbf{4.a}.
 
 \subsection{}
 
-Using our \(\frac{N_2}{N_{tot}}\) from \textbf{3.c}, since it is the same stellar conditions,
+Using our \(\frac{N_1}{N_{tot}}\) from \textbf{3.c}, since it is the same stellar conditions,
 \begin{equation}
-    \frac{N_{2, \ce{Ca}}}{N_{2, \ce{H}}} = \frac{\frac{N_{2, \ce{Ca}}}{\cancel{N_{tot}}}}{\frac{N_{2, \ce{H}}}{\cancel{N_{tot}}}} = \num{766.6}
+    \frac{N_{1, \ce{Ca}}}{N_{2, \ce{H}}} = \frac{\frac{N_{1, \ce{Ca}}}{\cancel{N_{tot}}}}{\frac{N_{2, \ce{H}}}{\cancel{N_{tot}}}} = \num{1.97e+8}
 \end{equation}
+meaning that there are far more \ce{Ca^{II}} ions creating H and K lines than Balmer hydrogen atoms.
 
 \end{document}
