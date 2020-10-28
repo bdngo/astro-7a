@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{cancel}
+\usepackage[output-complex-root=j]{siunitx}
+\usepackage[american, nooldvoltagedirection]{circuitikz}
+\usepackage{bm}
+\usepackage{mhchem}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
+\newcommand{\lemmaautorefname}{Lemma}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\unit}[1]{\bm{\hat{#1}}}
+\newcommand{\iprod}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\tpose}[1]{\left[#1\right]^{\! \top} \!\!}
+\newcommand{\diff}[1]{\frac{d}{d #1}}
+
+\lstset{
+    language=Python,
+    tabsize=4,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    frame=single
+}
+
+\title{ASTRO 7A PS 07}
+\author{Bryan Ngo}
+\date{2020-10-26}
+
+\begin{document}
+
+\maketitle
+
+\section{The Maxwell-Boltzmann Distribution}
+
+\begin{equation}
+    n_v \, dv = n \left(\frac{m}{2 \pi kT}\right)^{\frac{3}{2}} e^{-\frac{m v^2}{2 kT}} 4 \pi v^2 \, dv
+\end{equation}
+
+\subsection{}
+
+The mean speed is simply
+\begin{equation}
+    \frac{1}{n} \int_0^\infty v n_v \, dv = 4 \pi \left(\frac{b}{\pi}\right)^{\frac{3}{2}} \int_0^\infty v^3 e^{-b v^2} \, dv
+\end{equation}
+where we let \(b = \frac{m}{2 kT}\).
+Carrying out the integral,
+\begin{align}
+    4 \pi \left(\frac{b}{\pi}\right)^{\frac{3}{2}} \int_0^\infty v^3 e^{-b v^2} \, dv &= 4 \pi \frac{b^{\frac{3}{2}}}{\pi^{\frac{3}{2}}} \frac{1}{2 b^2} \\
+    &= \sqrt{\frac{4}{b \pi}} = \sqrt{\frac{4}{\frac{\pi m}{2 kT}}} = \sqrt{\frac{8 k T}{\pi m}}
+\end{align}
+
+\subsection{}
+
+The ratio of the proton and electron mean velocity is
+\begin{equation}
+    \frac{v_p}{v_e} = \sqrt[]{\frac{\frac{\cancel{8 k T}}{\cancel{\pi} m_p}}{\frac{\cancel{8 k T}}{\cancel{\pi} m_e}}} = \sqrt[]{\frac{m_e}{m_p}} = \num{0.023}
+\end{equation}
+where \(m_p = \SI{1.67e-27}{\kilogram}\) and \(m_e = \SI{9.11e-31}{\kilogram}\).
+This means that the electron is faster than the proton by a factor of \(\sim 43\), everything else on balance.
+
+\subsection{}
+
+To find the mean energy, we integrate across the entire range of kinetic energies, or \(\frac{1}{2} m v^2\).
+The mean energy per particle is defined as
+\begin{equation}
+    \frac{1}{n} \int_0^\infty \frac{1}{2} m v^2 n_v \, dv = \int_0^\infty \frac{2 m v}{\sqrt{\pi}} \left(\frac{m v^2}{2 kT}\right)^{\frac{3}{2}} e^{-\frac{m v^2}{2 kT}} \, dv
+\end{equation}
+Substituting \(u = m v^2 \implies du = 2 m v \, dv\),
+\begin{align}
+    \int_0^\infty \frac{2 m v}{\sqrt{\pi}} \left(\frac{m v^2}{2 kT}\right)^{\frac{3}{2}} e^{-\frac{m v^2}{2 kT}} \, dv &= \frac{1}{\sqrt{\pi}} \int_0^\infty \left(\frac{u}{2 kT}\right)^{\frac{3}{2}} e^{-\frac{u}{2 kT}} \, du \\
+    &= \frac{1}{\cancel{\sqrt{\pi}}} \frac{3}{4} 2 kT \cancel{\sqrt{\pi}} = \frac{3}{2} kT
+\end{align}
+
+\subsection{}
+
+Since we assume the system is in thermal equilibrium, the temperature of a proton and electron in the plasma is the same.
+This means that the proton and electron have the same energy, since it is only dependent on temperature.
+
+\section{Neutral Hydrogen Gas}
+
+\subsection{}
+
+Using the Boltzmann equation and the degeneracies of hydrogen, letting \(a = 1, b = 4, E_b = -\frac{\SI{13.6}{\electronvolt}}{16}, E_a = \SI{-13.6}{\electronvolt}\), and setting \(\frac{N_b}{N_a} = 1\),
+\begin{align}
+    g_n &= 2n^2 \\
+    \frac{N_b}{N_a} = \frac{g_b}{g_a} e^{-\frac{E_b - E_a}{kT}} &= 16 \exp\left(\frac{\SI{13.6}{\electronvolt}}{kT} \left(\frac{1}{16} - 1\right)\right) = 1 \\
+    &\Rightarrow \frac{\SI{13.6}{\electronvolt}}{kT} \frac{15}{16} = \ln{16} \\
+    &\Rightarrow T = \frac{\SI{13.6}{\electronvolt}}{k \ln{16}} \frac{15}{16} = \SI{56922}{\kelvin}
+\end{align}
+
+\subsection{}
+
+First, determining the ratio \(\frac{N_2}{N_1}\),
+\begin{equation}
+    \frac{N_2}{N_1} = \frac{g_2}{g_1} e^{-\frac{E_2 - E_1}{kT}} \approx \num{1.74}
+\end{equation}
+where \(T = \SI{85400}{\kelvin}\), meaning that \(N_2 = \num{1.74} N\).
+
+\subsection{}
+
+\begin{equation}
+    \lim_{T \to \infty} \frac{g_b}{g_a} e^{-\frac{E_b - E_a}{kT}} = \frac{g_b}{g_a} = \frac{b^2}{a^2}
+\end{equation}
+Of course, this is not what happens in reality.
+This is because this model assumes that no electrons are ionized, i.e. hydrogen has an infinite amount of orbitals.
+In reality, electrons are eventually ionized given a high enough temperature, so they do not contribute to the calculation.
+
+\section{Shuffling the Alphabet}
+
+\begin{equation}
+    \frac{N_{i + 1}}{N_i} = \frac{2 Z_{i + 1}}{n_e Z_i} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}} = \frac{2 kT Z_{i + 1}}{P_e Z_i} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}}
+\end{equation}
+
+\subsection{}
+
+First, we can determine that \(Z_{II} = 1\) since the hydrogen is completely ionized, there are no electrons to produce degeneracy.
+In the first excited state, the Boltzmann factor is 
+\begin{equation}
+    e^{-\frac{E_2 - E_1}{kT}} = \num{3.74e-4} \ll 1
+\end{equation}
+meaning that most of the atoms that are not ionized appear to be in the ground state, meaning we can approximate its partition function to be that of the ground state, or \(Z_I = g_1 = 2\), meaning \(\frac{Z_{II}}{Z_I} = \frac{1}{2}\).
+
+\subsection{}
+
+First, we find the electron number density to be the number of particles out of all the atoms that are ionized, meaning that
+\begin{equation}
+    n_e = n_{tot} \frac{N_{II}}{N_I + N_{II}}
+\end{equation}
+Plugging into the Saha equation and letting \(a = \frac{N_{II}}{N_I}\),
+\begin{align}
+    a &= \frac{2 Z_{II}}{n_{tot} \frac{N_{II}}{N_I + N_{II}} Z_I} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}} \\
+    &= \left(\frac{1 + a}{a}\right) \frac{2 Z_{II}}{n_{tot} Z_I} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}} \\
+    \Rightarrow \frac{a^2}{1 + a} &= \frac{2 Z_{II}}{n_{tot} Z_I} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}} = \num{119.6}
+\end{align}
+where \(T = \SI{1.5e+4}{\kelvin}\).
+Then, we can solve for \(a\),
+\begin{equation}
+    a^2 - \num{119.6} a - \num{119.6} = 0 \implies a = \frac{N_{II}}{N_I} = \num{120.5}
+\end{equation}
+where we take the positive branch as this is a ratio of physical quantities.
+This means that \(\frac{N_I}{N_{tot}} = \frac{1}{1 + a} \approx \num{8.23e-3}\).
+To determine the probability of being in the ground or excited state, we calculate the Boltzmann equation
+\begin{equation}
+    \frac{N_1}{N_2} = \frac{g_1}{g_2} e^{-\frac{E_1 - E_2}{kT}} = \num{668.3}
+\end{equation}
+meaning that it is more likely to be located in the ground state.
+
+\subsection{}
+
+Calculating the Saha ratio for the Sun given \(T = \SI{5777}{\kelvin}, P_e = \SI{1.5}{\newton\per\meter\squared}\),
+\begin{equation}
+    \frac{N_{II}}{N_I} = \frac{2 kT Z_{i + 1}}{P_e Z_i} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}} = \num{7.7e-5}
+\end{equation}
+meaning that the number of neutral atoms is \(\frac{N_I}{N_I + N_{II}} = \frac{1}{1 + \frac{N_{II}}{N_I}} = \num{0.99}\).
+Calculating the number of atoms that are in the first excited state using the Boltzmann equation,
+\begin{equation}
+    \frac{N_2}{N_1} = \num{5.05e-9} \implies \frac{N_2}{N_1 + N_2} \approx \num{5.05e-9}
+\end{equation}
+Thus, the total number of hydrogen atoms capable of producing Balmer lines is
+\begin{equation}
+    \frac{N_2}{N_{tot}} = \frac{N_I}{N_I + N_{II}} \frac{N_2}{N_1 + N_2} = \num{5.05e-9}.
+\end{equation}
+
+\subsection{}
+
+Calculating the same Saha ratio and Boltzmann ratio given \(T = \SI{3500}{\kelvin}\) and identical electron pressure,
+\begin{align}
+    \frac{N_{II}}{N_I} &= \num{4.21e-13} \\
+    \frac{N_2}{N_1} &= \num{8.22e-15} \\
+    \frac{N_2}{N_{tot}} &= \frac{N_I}{N_I + N_{II}} \frac{N_2}{N_1 + N_2} = \frac{1}{1 + \frac{N_{II}}{N_I}} \frac{\frac{N_2}{N_1}}{1 + \frac{N_2}{N_1}} = \num{8.22e-15}.
+\end{align}
+Meaning we should not be seeing strong Balmer lines, given the extremely small ratio of Balmer line-capable hydrogen to the total composition of an M dwarf.
+
+\section{Calcium}
+
+\subsection{}
+
+The Saha ratio for Calcium, given \(\chi_I = \SI{6.11}{\electronvolt}, Z_I = \num{1.32}, Z_{II} = \num{2.30}\), and the same temperature and pressure as problem \textbf{3.c} is
+\begin{equation}
+    \frac{N_{II}}{N_I} = \frac{2 kT Z_{i + 1}}{P_e Z_i} \left(\frac{2 \pi m_e kT}{h^2}\right)^{\frac{3}{2}} e^{-\frac{\chi_i}{kT}} = \num{918.3}
+\end{equation}
+Meaning that \(\frac{N_{II}}{N_I + N_{II}} = \num{0.99}\).
+
+\subsection{}
+
+Using Planck's law
+\begin{equation}
+    E = \frac{h c}{\lambda}
+\end{equation}
+the \ce{Ca^{II} H} line photon has an energy difference from the ground state of \(\SI{5.0e-19}{\joule} = \SI{3.12}{\electronvolt}\).
+Likewise, the \ce{Ca^{II} K} line photon has an energy difference from the ground state of \(\SI{5.05e-19}{\joule} = \SI{3.15}{\electronvolt}\).
+
+\subsection{}
+
+Using the Boltzmann equation with \(g_1 = 2, g_2 = 4, \Delta E_{21} = \SI{3.15}{\electronvolt}\),
+\begin{align}
+    \frac{N_2}{N_1} &= \frac{g_2}{g_1} e^{-\frac{\Delta E}{kT}} = \num{3.57e-3} \\
+    \Rightarrow \frac{N_2}{N_1 + N_2} &= \num{3.56e-3} \\
+    \Rightarrow \frac{N_2}{N_{tot}} &= \underbrace{\left(1 - \frac{N_{II}}{N_I + N_{II}}\right)}_{\frac{N_I}{N_I + N_{II}}} \frac{N_2}{N_1 + N_2} = \num{3.87e-6}
+\end{align}
+where we get \(\frac{N_I}{N_I + N_{II}}\) from \textbf{4.a}.
+
+\subsection{}
+
+Using our \(\frac{N_2}{N_{tot}}\) from \textbf{3.c}, since it is the same stellar conditions,
+\begin{equation}
+    \frac{N_{2, \ce{Ca}}}{N_{2, \ce{H}}} = \frac{\frac{N_{2, \ce{Ca}}}{\cancel{N_{tot}}}}{\frac{N_{2, \ce{H}}}{\cancel{N_{tot}}}} = \num{766.6}
+\end{equation}
+
+\end{document}
