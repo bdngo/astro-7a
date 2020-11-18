@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{eecstex}
+\usepackage{mhchem}
+
+\newcommand{\water}{\ce{H2O}}
+\DeclareSIUnit\year{yr}
+
+\title{ASTRO 7A PS 08}
+\author{Bryan Ngo}
+\date{2020-11-08}
+
+\begin{document}
+
+\maketitle
+
+\section{Mean Molecular Weight}
+
+\subsection{}
+
+Using the ionized version for mean molecular weight
+\begin{equation}
+    \frac{1}{\mu_i} = 2X + \frac{3}{4}Y + \frac{1}{2}Z
+\end{equation}
+The final composition of the star is currently \(30\% \cdot 81\% = 24.3\%\) hydrogen, \((70\% \cdot 81\%) + 18\% = 74.7\%\) helium, and \(1\%\) other metals, meaning that \(X = 0.243\), \(Y = 0.747\), and \(Z = 0.01\), so \(\mu_i = \num{0.955}\).
+
+\subsection{}
+
+For a neutral composition,
+\begin{equation}
+    \frac{1}{\mu_n} = X + \frac{1}{4}Y + \left\langle\frac{1}{A}\right\rangle_n Z
+\end{equation}
+where our \(X, Y, Z\) are identical and \(\left\langle\frac{1}{A}\right\rangle_n = \frac{1}{15.5}\), meaning that \(\mu_n = \num{2.33}\).
+This means that \(\frac{\mu_n}{\mu_i} = \num{2.43}\), so an ionized gas has a lower molecular weight, probably due to all the lost electrons due to ionization.
+
+\section{Solar Fusion}
+
+\begin{align}
+    \epsilon_{pp} &= \epsilon_{0, pp} \rho X^2 T_6^4 \\
+    \epsilon_{CNO} &= \epsilon_{0, CNO} \rho X X_{CNO} T_6^{19.9}
+\end{align}
+
+\subsection{}
+
+\begin{equation}
+    \frac{\epsilon_{pp}}{\epsilon_{CNO}} = \frac{\epsilon_{0, pp} \cancel{\rho} X^{\cancel{2}} T_6^4}{\epsilon_{0, CNO} \cancel{\rho} \cancel{X} X_{CNO} T_6^{19.9}} = \frac{\epsilon_{0, pp} X}{\epsilon_{0, CNO} X_{CNO} T_6^{15.9}}
+\end{equation}
+Plugging in \(\epsilon_{0, pp} = \SI{1.08e-12}{\watt\meter\cubed\per\kilogram\squared}\), \(\epsilon_{0, CNO} = \SI{8.24e-31}{\watt\meter\cubed\per\kilogram\squared}\), \(T_6 = \num{15.696}\), \(X = \num{0.3397}\), and \(X_{CNO} = \num{0.0141}\), we get that \(\frac{\epsilon_{pp}}{\epsilon_{CNO}} = \num{3.06}\).
+
+\subsection{}
+
+Taking our previous expression and solving for \(\frac{\epsilon_{pp}}{\epsilon_{CNO}} = \frac{1}{2}\),
+\begin{equation}
+    \frac{\epsilon_{0, pp} X}{\epsilon_{0, CNO} X_{CNO} T_6^{15.9}} = \frac{1}{2} \implies T_6 = \left(\frac{2 \epsilon_{0, pp} X}{\epsilon_{0, CNO} X_{CNO}}\right)^{\frac{1}{15.9}} = \num{17.6} \implies T = \SI{1.76e+7}{\kelvin}
+\end{equation}
+
+\section{Stellar Lifetimes}
+
+\begin{align}
+    M_A &= \num{0.072} M_\odot \\
+    \log(T_{e, A}) &= \num{3.23} \\
+    \log\left(\frac{L_A}{L_\odot}\right) &= \num{-4.3} \\
+    M_B &= \num{85} M_\odot \\
+    \log(T_{e, B}) &= \num{4.075} \\
+    \log\left(\frac{L_B}{L_\odot}\right) &= \num{6.006}
+\end{align}
+
+\subsection{}
+
+Using the nuclear timescale equation and given that \num{100}\% of the hydrogen is burned,
+\begin{align}
+    E_A &= 1 \cdot \num{0.007} M_A c^2 = \SI{9.06e+43}{\joule} \\
+    L_A &= L_\odot 10^{\num{-4.3}} = \SI{1.92e+22}{\watt} \\
+    t_A &= \frac{E_A}{L_A} = \SI{4.72e+21}{\second} = \SI{1.50e+14}{\year} \\
+    E_B &= 1 \cdot \num{0.007} M_B c^2 = \SI{1.06e+47}{\joule} \\
+    L_B &= L_\odot 10^{\num{6.006}} = \SI{3.88e+32}{\watt} \\
+    t_B &= \frac{E_B}{L_B} = \SI{2.75e+14}{\second} = \SI{8.73e+6}{\year} \\
+    \frac{t_A}{t_B} &= \num{1.71e+7}
+\end{align}
+Star A will last about \num{10000} times longer than the Sun, while Star B will last about \num{10000} times shorter than the Sun.
+
+\subsection{}
+
+Using the Stefan-Boltzmann equation,
+\begin{align}
+    T_{e, A} &= 10^{\num{3.23}} = \SI{1698}{\kelvin} \\
+    R_A &= \sqrt{\frac{L_A}{4 \pi \sigma T_{e, A}^4}} = \SI{5.69e+7}{\meter} = \num{0.08} R_\odot \\
+    T_{e, B} &= 10^{\num{4.705}} = \SI{50699}{\kelvin} \\
+    R_B &= \sqrt{\frac{L_B}{4 \pi \sigma T_{e, B}^4}} = \SI{9.08e+9}{\meter} = \num{13} R_\odot \\
+    \frac{R_B}{R_A} &= \num{159.6}
+\end{align}
+
+\section{Hydrostatic Equilibrium}
+
+\subsection{}
+
+Given the equation
+\begin{equation}
+    \frac{dP}{dr} = -\rho_{\water} g
+\end{equation}
+we can integrate with respect to a distance \(r\) to obtain
+\begin{equation}
+    P(z) = \int_z^0 -\rho_{\water} g \, dr = \rho_{\water} g z
+\end{equation}
+
+\subsection{}
+
+Examining the forces acting on the block of soap,
+\begin{equation}
+    F_{net} = F_g - F_p = 0 \implies F_g = F_P
+\end{equation}
+Subtituting relevant variables,
+\begin{equation}
+    \rho_{soap} h A g = \rho_{\water} z A g
+\end{equation}
+where \(A\), \(h\), and \(z\) is the cross-sectional area of the soap, thickness of the soap, and the immersion depth of the soap.
+Then, 
+\begin{align}
+    \rho_{soap} h A \cancel{g} &= \rho_{\water} z A \cancel{g} \\
+    m_{soap} &= m_{\water}
+\end{align}
+meaning the mass of the soap is equal to the displaced mass of water.
+
+\subsection{}
+
+The block of soap should rise higher since its density is the lowest out of all three items.
+The ratio of their displacement heights is
+\begin{equation}
+    \frac{z_w}{z_s} = \frac{\cancel{h} \frac{\rho_w}{\cancel{\rho_{\water}}}}{\cancel{h} \frac{\rho_s}{\cancel{\rho_{\water}}}} = \frac{\rho_w}{\rho_s} > 0
+\end{equation}
+which, according to our coordinate system, means the wood sinks more.
+
+\section{Optical Depth of Earth's Atmosphere}
+
+\subsection{}
+
+Assuming that the Earth's atmosphere is neutral,
+\begin{equation}
+    \frac{1}{\mu} = \sum_j \frac{X_j}{A_j} = \frac{m_{\ce{H}}}{m_{\ce{N2}}} X_{\ce{N2}} + \frac{m_{\ce{H}}}{m_{\ce{O2}}} X_{\ce{O2}}
+\end{equation}
+Letting \(m_{\ce{H}} = \SI{1.00}{\atomicmassunit}\), \(m_{\ce{N2}} = \SI{28.00}{\atomicmassunit}\), \(m_{\ce{O2}} = \SI{32.00}{\atomicmassunit}\), \(X_{\ce{N2}} = \num{0.8}\), and \(X_{\ce{O2}} = \num{0.2}\), \(\mu = \num{28.72}\).
+
+\subsection{}
+
+Given that the mean free path of a photon and the equation for optical depth are, respectively,
+\begin{align}
+    \tau &= \int_0^\infty \kappa_\lambda \rho \, ds = \int_0^\infty n \sigma_\lambda \, ds \\
+    \sigma &= 0.8 \sigma_{\ce{N}} + 0.2 \sigma_{\ce{O}} \\
+    n &= \frac{P(s)}{kT}
+\end{align}
+where we take a weighted sum of the cross-sectional areas of nitrogen and oxygen and derive the number density from the ideal gas law,
+\begin{equation}
+    \tau = \int_0^\infty \frac{P(s)}{kT} (0.8 \sigma_{\ce{N}} + 0.2 \sigma_{\ce{O}}) \, ds
+\end{equation}
+Then, assuming hydrostatic equilibrium, we can solve the equation
+\begin{align}
+    \diff{r} P &= -\rho g \\
+    P &= \frac{\rho}{\mu m_{\ce{H}}} kT \\
+    \Rightarrow \diff{r} P &= -\frac{\mu m_{\ce{H}} G M_\oplus}{kT R_\oplus^2} P \\
+    \Rightarrow P(r) &= P_0 \exp\left(-\frac{\mu m_{\ce{H}} G M_\oplus}{kT R_\oplus^2} r\right) \\
+    \Rightarrow \tau &= \int_0^\infty \frac{1}{kT} P_0 \exp\left(-\frac{\mu m_{\ce{H}} G M_\oplus}{kT R_\oplus^2} r\right) (0.8 \sigma_{\ce{N}} + 0.2 \sigma_{\ce{O}}) \, ds \\
+    &= -\frac{0.8\sigma_{\ce{N}} + 0.2\sigma_{\ce{O}}}{\cancel{kT}} \left(\frac{\cancel{kT} P_0 R_\oplus^2}{\mu m_{\ce{H}} G M_\oplus}\right) \left.\exp\left(-\frac{\mu m_{\ce{H}} G M_\oplus}{kT R_\oplus^2} r\right) \right|_0^\infty \\
+    &= -\frac{(0.8\sigma_{\ce{N}} + 0.2\sigma_{\ce{O}}) P_0 R_\oplus^2}{\mu m_{\ce{H}} G M_\oplus} \left(\cancelto{0}{\lim_{R \to \infty} \exp\left(-\frac{\mu m_{\ce{H}} G M_\oplus}{kT R_\oplus^2} R\right)} - 1\right) \\
+    &= \frac{(0.8\sigma_{\ce{N}} + 0.2\sigma_{\ce{O}}) P_0 R_\oplus^2}{\mu m_{\ce{H}} G M_\oplus}
+\end{align}
+
+\subsection{}
+
+Given
+\begin{align}
+    \mu &= \num{28.72} \\
+    m_{\ce{H}} &= \SI{1.67e-27}{\kilogram} \\
+    P_0 &= \SI{101325}{\pascal} \\
+    R_\oplus &= \SI{6.4e+6}{\meter} \\
+    M_\oplus &= \SI{6.0e+24}{\meter} \\
+    \sigma_{\ce{N}} &= \SI{e-27}{\centi\meter\squared} = \SI{e-31}{\meter\squared} \\
+    \sigma_{\ce{O}} &= \SI{2e-27}{\centi\meter\squared} = \SI{2e-31}{\meter\squared} \\
+    \tau &= \frac{(0.8\sigma_{\ce{N}} + 0.2\sigma_{\ce{O}}) P_0 R_\oplus^2}{\mu m_{\ce{H}} G M_\oplus} = \num{0.026}
+\end{align}
+
+\end{document}
