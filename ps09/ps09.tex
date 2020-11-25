@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{eecstex}
+\usepackage{mhchem}
+
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\parsec{pc}
+
+\title{ASTRO 7A PS 09}
+\author{Bryan Ngo}
+\date{2020-11-21}
+
+\begin{document}
+
+\maketitle
+
+\section{The Mass of the Sun}
+
+\subsection{}
+
+The sun uses \SI{1.3e+44}{\joule} of energy due to nuclear fusion producing a luminosity of \SI{3.828e+26}{\watt}.
+Using the mass-energy equivalence and assuming luminosity originates from fusion,
+\begin{equation}
+    L_\odot = \frac{dE}{dt} = \frac{d (m c^2)}{dt} = \frac{dm}{dt} c^2 \implies \frac{dm}{dt} = \frac{L_\odot}{c^2} = \SI{4.26e+9}{\kilogram\per\second} = \num{6.72e-14} M_\odot \, \si{\per\year}
+\end{equation}
+
+\subsection{}
+
+The nuclear fusion mass loss rate is about twice as fast as the solar wind loss, with \(\frac{m_{nuc}}{m_{sw}} = \num{2.24}\).
+
+\subsection{}
+
+Assuming a main sequence length of \SI{e+10}{\year},
+\begin{align}
+    m_{nuc} &= \num{6.72e-4} M_{\odot} \\
+    m_{sw} &= \num{3e-4} M_{\odot}
+\end{align}
+This only adds up to about a thousandth of the Sun's mass over its entire main sequence.
+
+\section{The North American Nebula}
+
+\begin{align}
+    A_\lambda &= \num{1.1} \\
+    t &= \SI{20}{\parsec} \\
+    d &= \SI{700}{\parsec} \\
+    M_V &= \num{-1.1}
+\end{align}
+\begin{enumerate}
+    \item \(m_1 = M_V + 5\log\left(\frac{d}{\SI{10}{\parsec}}\right) = \num{8.1}\)
+    \item \(m_2 = M_V + 5\log\left(\frac{d + t}{\SI{10}{\parsec}}\right) + A_\lambda = \num{9.3}\)
+    \item \(d_{est} = (\SI{10}{\parsec}) 10^{\frac{m_2 - M_V}{5}} = \SI{1195}{\parsec}\) and \(d_{act} = \SI{720}{\parsec}\), so \(\sigma = \frac{|d_{act} - d_{est}|}{d_{act}} = \num{0.66} = \num{66}\%\)
+\end{enumerate}
+
+\section{H I Clouds}
+
+\begin{align}
+    \tau_{\ce{H}} &= \num{0.5} \\
+    T &= \SI{100}{\kelvin} \\
+    \Delta v &= \SI{10}{\kilo\meter\per\second} \\
+    n_{\ce{H}} &= \SI{e+7}{\per\meter\cubed} \\
+    \tau_{\ce{H}} &= \num{5.2e-23} \frac{N_{\ce{H}}}{T \Delta v}
+\end{align}
+\begin{align}
+    N_{\ce{H}} &= \frac{\tau_{\ce{H}} T \Delta v}{\num{5.2e-23}} = \SI{9.6e+27}{\per\meter\squared} = n_{\ce{H}} t \implies t = \frac{N_{\ce{H}}}{n_{\ce{H}}} = \SI{9.6e+20}{\meter} = \SI{3.12e+4}{\parsec}
+\end{align}
+
+\section{Molecular Transitions}
+
+\begin{align}
+    E_r &= \frac{1}{2} I \omega^2 = \frac{L^2}{2I} \\
+    L &= \hbar \sqrt{\ell (\ell + 1)}, \ell \in \N
+\end{align}
+
+\subsection{}
+
+\begin{theorem}
+    Given masses \(m_1, m_2\) and distances from their center of mass \(r_1, r_2\), respectively,
+    \begin{equation}
+        I = m_1 r_1^2 + m_2 r_2^2 = \mu r^2
+    \end{equation}
+    where \(\mu = \frac{m_1 m_2}{m_1 + m_2}\) and \(r = r_1 + r_2\).
+\end{theorem}
+\begin{proof}
+    We can define \(r_1, r_2\) in terms of \(r\) as follows:
+    \begin{align}
+        r_1 &= \frac{\mu}{m_1} r \\
+        r_2 &= \frac{\mu}{m_2} r
+    \end{align}
+    Plugging into the original equation for moment of inertia,
+    \begin{align}
+        I = m_1 r_1^2 + m_2 r_2^2 &= \cancel{m_1} \frac{\mu^2}{m_1^{\cancel{2}}} r^2 + \cancel{m_2} \frac{\mu^2}{m_2^{\cancel{2}}} r^2 \\
+        &= \mu^2 r^2 \left(\frac{1}{m_1} + \frac{1}{m_2}\right) \\
+        &= \mu^2 r^2 \underbrace{\left(\frac{m_1 + m_2}{m_1 m_2}\right)}_{\frac{1}{\mu}} \\
+        &= \mu r^2
+    \end{align}
+\end{proof}
+
+\subsection{}
+
+\begin{align}
+    m_{\ce{^{12}C}} &= \SI{12.000}{\atomicmassunit} \\
+    m_{\ce{^{13}C}} &= \SI{13.003}{\atomicmassunit} \\
+    m_{\ce{^{16}O}} &= \SI{15.995}{\atomicmassunit} \\
+    r_{\ce{CO}} &= \SI{0.12}{\nano\meter} \\
+    \mu_{\ce{^{12}CO}} &= \SI{6.86}{\atomicmassunit} = \SI{1.14e-26}{\kilogram} \\
+    \mu_{\ce{^{13}CO}} &= \SI{7.17}{\atomicmassunit} = \SI{1.19e-26}{\kilogram} \\
+    I_{\ce{^{12}CO}} &= \mu_{\ce{^{12}CO}} r_{\ce{CO}}^2 = \SI{1.64e-46}{\kilogram\meter\squared} \\
+    I_{\ce{^{13}CO}} &= \mu_{\ce{^{13}CO}} r_{\ce{CO}}^2 = \SI{1.72e-46}{\kilogram\meter\squared}
+\end{align}
+
+\subsection{}
+
+\begin{align}
+    L_3 &= \SI{2.6e-34}{\joule\second} \\
+    L_2 &= \SI{3.7e-34}{\joule\second} \\
+    E_3 - E_2 &= \frac{L_3^2 - L_2^2}{2I_{\ce{^{12}CO}}} = \SI{2.03e-22}{\joule} \\
+    E_{2 \to 3} &= \frac{h c}{\lambda} \implies \lambda = \frac{h c}{E_{2 \to 3}} = \SI{9.76e-4}{\meter} \\
+\end{align}
+which lies within the radio/infrared boundary.
+
+\subsection{}
+
+\begin{align}
+    E_3 - E_2 = \frac{L_3^2 - L_2^2}{2I_{\ce{^{13}CO}}} &= \SI{1.94e-22}{\joule} \\
+    E_{2 \to 3} &= \frac{h c}{\lambda} \implies \lambda = \frac{h c}{E_{2 \to 3}} = \SI{1.02e-3}{\meter}
+\end{align}
+which is in the radio range.
+Astronomers can use the differences in wavelength and emitted spectrum to determine isotopes.
+
+\section{Cooling Molecular Clouds \& Star Formation}
+
+\subsection{}
+
+\begin{align}
+    M_c &= \num{1.5} M_\odot \\
+    R &= \SI{0.1}{\parsec}
+\end{align}
+
+The gravitational acceleration \(g\) remains constant throughout the contraction, so
+\begin{equation}
+    g = \frac{G M_c}{R^2} = \frac{G \frac{4}{3} \pi R^3 \rho}{R^2} = \frac{4}{3} \pi \rho G R
+\end{equation}
+Then, using kinematic equations to solve for \(\frac{R}{2}\),
+\begin{align}
+    \frac{1}{2} g t^2 &= \frac{R}{2} \\
+    \frac{2}{3} \pi \rho G R t^2 &= \frac{R}{2} \\
+    \Rightarrow t &= \sqrt{\frac{3}{4 \pi G \rho}}
+\end{align}
+
+\subsection{}
+
+\begin{align}
+    r &= \SI{0.1}{\micro\meter} \\
+    \rho_p &\approx \SI{1}{\gram\per\centi\meter\cubed} = \SI{1000}{\kilogram\per\meter\cubed} \\
+    \rho_d &\approx Z \rho \\
+    Z &\approx \num{e-2}
+\end{align}
+Using the mean collision time,
+\begin{equation}
+    t = \frac{\ell}{v} = \frac{1}{n \sigma v}
+\end{equation}
+where \(\ell\) is the mean free path.
+Substituting the collisional cross-section \(\sigma\), number density \(n\), and rms velocity \(v\), 
+\begin{align}
+    t &= \left(\frac{\rho_d}{\frac{4}{3} \pi \rho_p r^3} \pi 4r^2 \sqrt{\frac{3kT}{\mu m_{\ce{H}}}}\right)^{-1} = \left(\frac{3 \rho_d}{\rho_p r}\ \sqrt{\frac{3kT}{\mu m_{\ce{H}}}}\right)^{-1} = \frac{\rho_p r}{3 \rho_d} \sqrt{\frac{\mu m_{\ce{H}}}{3kT}}
+\end{align}
+where we find \(n = \frac{\rho_d}{M_c}\), where \(M_c = \rho_p V\).
+
+\subsection{}
+
+The density of the cloud is \(\frac{M_c}{\frac{4}{3} \pi R^3} = \SI{2.4e-17}{\kilogram\per\meter\cubed}\), and \(\mu = 2\) since the cloud is mainly composed of diatomic hydrogen.
+Using the Jeans radius to solve for \(T\),
+\begin{equation}
+    R = R_j = \left(\frac{15kT}{4 \pi G \mu m_{\ce{H}} \rho}\right)^{\frac{1}{2}} \implies T = \frac{4 \pi G \mu m_{\ce{H}} \rho R^2}{15k}
+\end{equation}
+Then, calculating \(t_{\text{ff}}\) and \(t_c\) by plugging in \(T\),
+\begin{align}
+    t_{\text{ff}} &= \sqrt{\frac{3}{4 \pi G \rho}} = \SI{1.2e+13}{\second} \\
+    t_c &= \frac{\rho_p r}{3 Z \rho} \sqrt{\frac{\mu m_{\ce{H}}}{3kT}} \\
+    &= \frac{\rho_p r}{3 Z \rho} \sqrt{\frac{\cancel{\mu m_{\ce{H}}}}{3\cancel{k}\frac{4 \pi G \cancel{\mu m_{\ce{H}}} \rho R^2}{15\cancel{k}}}} \\
+    &= \frac{\rho_p r}{3 Z \rho R} \sqrt{\frac{5}{4 \pi G \rho}} = \SI{6.93e+11}{\second}
+\end{align}
+so in this case, \(t_c < t_{\text{ff}}\).
+
+\subsection{}
+
+Taking the ratio \(\frac{t_c}{t_{\text{ff}}}\),
+\begin{align}
+    \frac{t_c}{t_{\text{ff}}} &= \frac{\frac{\pi \rho_p R}{3 \rho_d} \sqrt{\frac{\mu m_{\ce{H}}}{3kT}}}{\sqrt{\frac{3}{4 \pi G \rho}}} \\
+    &= \frac{\pi \rho_p r}{3 Z \rho} \sqrt{\frac{4 \pi G \rho \mu m_{\ce{H}}}{9kT}} \\
+    &= \left(\frac{\pi \rho_p}{3 Z} \sqrt{\frac{4 \pi G \mu m_{\ce{H}}}{9k}}\right) \frac{r}{\sqrt{T \rho}} \propto \frac{r}{\sqrt{T \rho}}
+\end{align}
+Since the cloud initially satisifies the inequality, we can treat the collapse as isothermal, so the ratio is only dependent on \(r\) and \(\rho\).
+During the process of collapse, both of these terms serve to make \(\frac{t_c}{t_{\text{ff}}}\) smaller, i.e. \(r\) decreases and \(\rho\) increases.
+This means that the collapse will remain Jeans-unstable, making star formation likely throughout, and promising.
+
+\end{document}
