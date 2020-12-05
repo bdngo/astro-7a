@@ -31,7 +31,7 @@ times = [
 lum = lambda et: et[0] / (et[1] * 10**6 * 365 * 86400 * L_SUN)
 luminosities = list(map(lum, zip(energies, times)))
 log_lum = list(map(log10, luminosities))
-log_m = list(map(log10, masses))
+log_m = list(map(log10, solar_masses))
 
 with open("ps10/q2.csv", 'w', newline='') as f:
     writer = csv.writer(f)

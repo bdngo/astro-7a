@@ -60,7 +60,7 @@ where \(m\) is the stellar mass and \(c\) is the speed of light.
 \begin{center}
     \begin{tikzpicture}
         \begin{axis}[
-            title=Mass vs. Logarithm of Luminosity,
+            title=Logarithm of Mass vs. Logarithm of Luminosity,
             xlabel = {\(\log\left(\frac{M}{M_\odot}\right)\)},
             ylabel = {\(\log\left(\frac{L}{L_\odot}\right)\)},
         ]
@@ -99,15 +99,15 @@ Converting to absolute magnitude using the distance modulus,
 \end{equation}
 Meaning that
 \begin{equation}
-    \log\left(\frac{L}{L_\odot}\right) = \frac{M_\odot - M}{5} = \num{0.166}
+    \log\left(\frac{L}{L_\odot}\right) = \frac{M_\odot - M}{2.5} = \num{0.332}
 \end{equation}
-Referring to Figure 13.1, this lands it between points 2 and 3 of a \(1 M_\odot\) cluster, or between \SI{7.04}{\giga\year} and \SI{9.84}{\giga\year}.
+Referring to Figure 13.1, this lands it at point 3 of a \(1 M_\odot\) cluster, or approximately \SI{4.91}{\giga\year}.
 
 \subsection{}
 
 \begin{enumerate}
-    \item An interstellar cloud can absorb light and reemit redder light from a stellar cluster, which would make it appear dimmer than it actually is.
-    \item An interstellar cloud can also reflect bluer light from a stellar cluster.
+    \item An interstellar cloud can absorb light and reemit redder light from a stellar cluster, which would make it appear dimmer and redder than it actually is; this is interstellar reddening.
+    \item An interstellar cloud can also reflect bluer light from a stellar cluster by excitation of the dust grains, changing the received spectrum.
 \end{enumerate}
 
 \section{Horizontal Branch Lifetime}
@@ -122,9 +122,9 @@ Referring to Figure 13.1, this lands it between points 2 and 3 of a \(1 M_\odot\
     \item The total mass lost in the triple alpha process is \(3 * \SI{4.0026}{\atomicmassunit} - \SI{12}{\atomicmassunit} = \SI{0.0078}{\atomicmassunit} = \SI{1.3e-29}{\kilogram}\), which by mass-energy equivalence is equal to \(\SI{1.2e-12}{\joule}\).
     \item The efficiency of the triple alpha process is \(\frac{\Delta m}{m} = \num{6.5e-4}\).
     Thus, \(E = (\num{6.5e-4}) \cdot 0.1 M_\odot c^2 = \SI{1.2e+43}{\joule}\).
-    \item The luminosity of our star is \(L = L_\odot 10^{\frac{M_\odot - M}{5}} = \SI{3.828e+27}{\watt}\).
-    Then, \(t = \frac{E}{L} = \SI{3.05e+15}{\second} = \SI{9.7e+7}{\year}\).
-    % TODO: comparison
+    \item The luminosity of our star is \(L = L_\odot 10^{\frac{M_\odot - M}{5}} = \SI{3.828e+28}{\watt}\).
+    Then, \(t = \frac{E}{L} = \SI{3.05e+15}{\second} = \SI{9.7e+6}{\year}\).
+    This is about \num{1000} times smaller than the length of the main sequence of a \(1 M_\odot\) star.
 \end{enumerate}
 
 \section{SN 1987A}
@@ -152,7 +152,7 @@ the number of atoms in \(0.075 M_\odot\) of cobalt-56 is
 Then,
 \begin{align}
     L(0) &= (\SI{3.72}{\mega\electronvolt}) \left.\frac{dN}{dt}\right|_{t = 0} = \SI{-6.19e+53}{\electronvolt\per\second} = \SI{-9.9e+34}{\watt} \\
-    L(500) &= (\SI{3.72}{\mega\electronvolt}) \left.\frac{dN}{dt}\right|_{t = 500} = \SI{-4.4e-3}{\electronvolt\per\second} = \SI{-7.11e-22}{\watt}
+    L(500) &= (\SI{3.72}{\mega\electronvolt}) \left.\frac{dN}{dt}\right|_{t = 500} = \SI{-7.1e+51}{\electronvolt\per\second} = \SI{-1.15e+33}{\watt}
 \end{align}
 
 \subsection{}
@@ -168,6 +168,6 @@ The binding energy can be defined as
 \begin{equation}
     U = -\frac{3}{5} \frac{GM^2}{R_\star} = \SI{-3.14e+46}{\joule}
 \end{equation}
-So the neutrino energy is about \num{10}\% of the gravitational binding energy.
+So the neutrino energy is about \num{8.3}\% of the gravitational binding energy.
 
 \end{document}
